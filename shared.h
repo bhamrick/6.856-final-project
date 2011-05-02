@@ -7,6 +7,8 @@ struct point {
 	int n;
 	real* x;
 	point & operator+=(point other);
+	point & operator*=(real s);
+	point & operator=(point other);
 	point(int n);
 };
 

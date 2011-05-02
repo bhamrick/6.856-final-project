@@ -38,6 +38,21 @@ point & point::operator+=(point other) {
 	return *this;
 }
 
+point & point::operator*=(real s) {
+	for(int i = 0; i<n; i++) {
+		this->x[i] *= s;
+	}
+	return *this;
+}
+
+point & point::operator=(point other) {
+	assert(this->n == other.n);
+	for(int i = 0; i < n; i++) {
+		this->x[i] = other.x[i];
+	}
+	return *this;
+}
+
 void move_along_line(point a, point dir, real s, point* result) {
 	assert(a.n == dir.n && a.n == result->n);
 	for(int i = 0; i < a.n; i++)
