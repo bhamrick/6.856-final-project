@@ -10,7 +10,7 @@ struct point {
 	point(int n);
 };
 
-void random_direction(int n, point* p);
+void random_direction(point* p);
 
 void move_along_line(point a, point dir, real s, point* result);
 
