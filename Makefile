@@ -1,8 +1,8 @@
 CC=g++
 LD=g++
 
-CCFLAGS=-O2 -I.
-LDFLAGS=-O2
+CCFLAGS=-O2 -I. -fopenmp
+LDFLAGS=-O2 -fopenmp
 
 TARGETS=ballwalk hitandrun
 SHARED_OBJECTS=shared.o main.o
