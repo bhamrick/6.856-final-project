@@ -33,14 +33,12 @@ point::point(int n) {
 
 point & point::operator+=(point other) {
 	assert(this->n == other.n);
-	#pragma omp parallel for
 	for(int i = 0; i < n; i++)
 		this->x[i] += other.x[i];
 	return *this;
 }
 
 point & point::operator*=(real s) {
-	#pragma omp parallel for
 	for(int i = 0; i<n; i++) {
 		this->x[i] *= s;
 	}
@@ -49,7 +47,6 @@ point & point::operator*=(real s) {
 
 point & point::operator=(point other) {
 	assert(this->n == other.n);
-	#pragma omp parallel for
 	for(int i = 0; i < n; i++) {
 		this->x[i] = other.x[i];
 	}
@@ -58,7 +55,6 @@ point & point::operator=(point other) {
 
 void move_along_line(point a, point dir, real s, point* result) {
 	assert(a.n == dir.n && a.n == result->n);
-	#pragma omp parallel for
 	for(int i = 0; i < a.n; i++)
 		result->x[i] = a.x[i] + dir.x[i] * s;
 }
