@@ -22,6 +22,10 @@ real rand_symmetric() {
 	return (real)(rand() - RAND_MAX/2)/(real)(RAND_MAX/2);
 }
 
+real rand_one_sided() {
+	return (real)rand()/(real)RAND_MAX;
+}
+
 point::point(int n) {
 	this->n = n;
 	this->x = new real[n];
