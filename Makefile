@@ -1,7 +1,7 @@
 CC=g++
 LD=g++
 
-CCFLAGS=-O2
+CCFLAGS=-O2 -I.
 LDFLAGS=-O2
 
 TARGETS=main
