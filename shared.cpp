@@ -1,7 +1,7 @@
 #include <cmath>
-#include <crand>
+#include <cstdlib>
 
-typedef real double;
+typedef double real;
 
 void random_direction(int n, real *vec) {
 	for(int i = 0; i < n; i += 2) {
