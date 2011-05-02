@@ -3,6 +3,6 @@
 
 #include<shared.h>
 
-point random_sample(int n, point p, bool (*inside)(const point));
+point random_sample(int n, point p, bool (*inside)(const point), int niter);
 
 #endif
