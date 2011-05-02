@@ -2,6 +2,7 @@
 #include<cstdio>
 #include<cstdlib>
 #include<ctime>
+#include<omp.h>
 
 bool cube_separation_oracle(point);
 bool sphere_separation_oracle(point);
@@ -16,20 +17,24 @@ int main() {
 	for(int i = 0; i<ndims; i++) {
 		sprintf(fname,"cube%d_warm",dims[i]);
 		printf("Working on cube of dimension %d with a warm start\n",dims[i]);
-		FILE *fout = fopen(fname,"w");
-		point p(dims[i]), sample(dims[i]);
+		point p(dims[i]), **sample;
+		sample = new point*[nsamples];
 		#pragma omp parallel
 		{
 			srand(time(NULL) ^ omp_get_thread_num());
 			#pragma omp for
 			for(int j = 0; j<nsamples; j++) {
-				sample = random_sample(p,cube_separation_oracle,niter);
-				fprintf(fout,"%lf",sample.x[0]);
-				for(int k = 1; k<p.n; k++) {
-					fprintf(fout," %lf",sample.x[k]);
-				}
-				fprintf(fout,"\n");
+				sample[j] = new point(dims[i]);
+				(*sample[j]) = random_sample(*sample[j],cube_separation_oracle,niter);
 			}
+		}
+		FILE *fout = fopen(fname,"w");
+		for(int j = 0; j<nsamples; j++) {
+			fprintf(fout,"%lf",sample[j]->x[0]);
+			for(int k = 1; k<dims[i]; k++) {
+				fprintf(fout," %lf",sample[j]->x[k]);
+			}
+			fprintf(fout,"\n");
 		}
 		fclose(fout);
 	}
@@ -37,23 +42,27 @@ int main() {
 	for(int i = 0; i<ndims; i++) {
 		sprintf(fname,"cube%d_cold",dims[i]);
 		printf("Working on cube of dimension %d with a cold start\n",dims[i]);
-		FILE *fout = fopen(fname,"w");
-		point p(dims[i]), sample(dims[i]);
-		for(int k = 0; k<p.n; k++) {
-			p.x[k] = 1-1e-4;
-		}
+		point p(dims[i]), **sample;
+		sample = new point*[nsamples];
 		#pragma omp parallel
 		{
 			srand(time(NULL) ^ omp_get_thread_num());
 			#pragma omp for
 			for(int j = 0; j<nsamples; j++) {
-				sample = random_sample(p,cube_separation_oracle,niter);
-				fprintf(fout,"%lf",sample.x[0]);
-				for(int k = 1; k<p.n; k++) {
-					fprintf(fout," %lf",sample.x[k]);
+				sample[j] = new point(dims[i]);
+				for(int k = 0; k<dims[i]; k++) {
+					sample[j]->x[k] = 1-1e-4;
 				}
-				fprintf(fout,"\n");
+				(*sample[j]) = random_sample(*sample[j],cube_separation_oracle,niter);
 			}
+		}
+		FILE *fout = fopen(fname,"w");
+		for(int j = 0; j<nsamples; j++) {
+			fprintf(fout,"%lf",sample[j]->x[0]);
+			for(int k = 1; k<dims[i]; k++) {
+				fprintf(fout," %lf",sample[j]->x[k]);
+			}
+			fprintf(fout,"\n");
 		}
 		fclose(fout);
 	}
@@ -61,20 +70,24 @@ int main() {
 	for(int i = 0; i<ndims; i++) {
 		sprintf(fname,"sphere%d_warm",dims[i]);
 		printf("Working on sphere of dimension %d with a warm start\n",dims[i]);
-		FILE *fout = fopen(fname,"w");
-		point p(dims[i]), sample(dims[i]);
+		point p(dims[i]), **sample;
+		sample = new point*[nsamples];
 		#pragma omp parallel
 		{
 			srand(time(NULL) ^ omp_get_thread_num());
 			#pragma omp for
 			for(int j = 0; j<nsamples; j++) {
-				sample = random_sample(p,sphere_separation_oracle,niter);
-				fprintf(fout,"%lf",sample.x[0]);
-				for(int k = 1; k<p.n; k++) {
-					fprintf(fout," %lf",sample.x[k]);
-				}
-				fprintf(fout,"\n");
+				sample[j] = new point(dims[i]);
+				(*sample[j]) = random_sample(*sample[j],sphere_separation_oracle,niter);
 			}
+		}
+		FILE *fout = fopen(fname,"w");
+		for(int j = 0; j<nsamples; j++) {
+			fprintf(fout,"%lf",sample[j]->x[0]);
+			for(int k = 1; k<dims[i]; k++) {
+				fprintf(fout," %lf",sample[j]->x[k]);
+			}
+			fprintf(fout,"\n");
 		}
 		fclose(fout);
 	}
@@ -82,21 +95,25 @@ int main() {
 	for(int i = 0; i<ndims; i++) {
 		sprintf(fname,"sphere%d_cold",dims[i]);
 		printf("Working on sphere of dimension %d with a cold start\n",dims[i]);
-		FILE *fout = fopen(fname,"w");
-		point p(dims[i]), sample(dims[i]);
-		p.x[0] = 1-1e-4;
+		point p(dims[i]), **sample;
+		sample = new point*[nsamples];
 		#pragma omp parallel
 		{
 			srand(time(NULL) ^ omp_get_thread_num());
 			#pragma omp for
 			for(int j = 0; j<nsamples; j++) {
-				sample = random_sample(p,sphere_separation_oracle,niter);
-				fprintf(fout,"%lf",sample.x[0]);
-				for(int k = 1; k<p.n; k++) {
-					fprintf(fout," %lf",sample.x[k]);
-				}
-				fprintf(fout,"\n");
+				sample[j] = new point(dims[i]);
+				sample[j]->x[0] = 1-1e-4;
+				(*sample[j]) = random_sample(*sample[j],sphere_separation_oracle,niter);
 			}
+		}
+		FILE *fout = fopen(fname,"w");
+		for(int j = 0; j<nsamples; j++) {
+			fprintf(fout,"%lf",sample[j]->x[0]);
+			for(int k = 1; k<dims[i]; k++) {
+				fprintf(fout," %lf",sample[j]->x[k]);
+			}
+			fprintf(fout,"\n");
 		}
 		fclose(fout);
 	}
