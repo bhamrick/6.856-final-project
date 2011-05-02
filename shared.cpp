@@ -18,6 +18,3 @@ void random_direction(int n, real *vec) {
 	}
 }
 
-void sample(int n, int T, real *start, bool (*separation_oracle)(real *)) {
-
-}
