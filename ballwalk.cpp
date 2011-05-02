@@ -2,7 +2,17 @@
 #include<cmath>
 
 point random_sample(int n, point p, bool (*inside)(const point), int niter) {
-	
+	point cur_point, next_point, delta;
+	cur_point = p;
+	for(int iter = 0; iter < niter; iter++) {
+		next_point = cur_point;
+		random_unit_ball(delta);
+		next_point += delta;
+		if(inside(next_point)) {
+			cur_point = next_point;
+		}
+	}
+	return cur_point;
 }
 
 void random_unit_ball(point* p) {
