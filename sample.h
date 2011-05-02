@@ -5,6 +5,6 @@
 
 #define epsilon 1.0e-12
 
-point random_sample(int n, point p, bool (*inside)(const point), int niter);
+point random_sample(point p, bool (*inside)(point), int niter);
 
 #endif
