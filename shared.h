@@ -14,4 +14,6 @@ void random_direction(point* p);
 
 void move_along_line(point a, point dir, real s, point* result);
 
+real rand_symmetric();
+
 #endif
