@@ -1,12 +1,14 @@
 #include<sample.h>
 #include<cmath>
 
-point random_sample(int n, point p, bool (*inside)(const point), int niter) {
-	point cur_point, next_point, delta;
+void random_unit_ball(point*);
+
+point random_sample(point p, bool (*inside)(const point), int niter) {
+	point cur_point(p.n), next_point(p.n), delta(p.n);
 	cur_point = p;
 	for(int iter = 0; iter < niter; iter++) {
 		next_point = cur_point;
-		random_unit_ball(delta);
+		random_unit_ball(&delta);
 		next_point += delta;
 		if(inside(next_point)) {
 			cur_point = next_point;

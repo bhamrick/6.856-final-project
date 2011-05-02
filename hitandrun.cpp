@@ -1,11 +1,11 @@
 #include <shared.h>
 #include <sample.h>
 
-point random_sample(int n, point p_start, bool (*inside)(const point), int niter) {
-	point p(n);
+point random_sample(point p_start, bool (*inside)(const point), int niter) {
+	point p(p_start.n);
 	p = p_start;
 
-	point dir(n), p2(n);
+	point dir(p_start.n), p2(p_start.n);
 
 	for(int iter = 0; iter < niter; iter++) {
 		random_direction(&dir);
