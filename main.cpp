@@ -3,10 +3,11 @@
 #include<cstdlib>
 #include<cstring>
 #include<ctime>
-#include<omp.h>
+#include<cmath>
 
 bool cube_separation_oracle(point);
 bool sphere_separation_oracle(point);
+bool simplex_separation_oracle(point);
 
 int main(int argc, char** argv) {
 	int ndims = 6;
@@ -124,4 +125,21 @@ bool sphere_separation_oracle(point p) {
 		square_norm += p.x[i] * p.x[i];
 	}
 	return square_norm < 1.0;
+}
+
+bool simplex_separation_oracle(point p) {
+	real c = (1 - sqrt(1 + (real)p.n)) / (real)p.n;
+	real coordsum = 0.0;
+	for(int i = 0; i < p.n; i++) {
+		coordsum += p.x[i];
+	}
+	real lambda = ((real)p.n * (1.0 - c)) / (coordsum - (real)p.n * c);
+	if(lambda < 1.0)
+		return false;
+	for(int i = 0; i < p.n; i++) {
+		real x1 = c + lambda * (p.x[i] - c);
+		if(x1 < 0.0 || x1 > 1.0)
+			return false;
+	}
+	return true;
 }
