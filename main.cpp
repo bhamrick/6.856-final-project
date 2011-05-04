@@ -1,17 +1,28 @@
 #include<sample.h>
 #include<cstdio>
 #include<cstdlib>
+#include<cstring>
 #include<ctime>
 #include<omp.h>
 
 bool cube_separation_oracle(point);
 bool sphere_separation_oracle(point);
 
-int main() {
-	int ndims = 5;
+int main(int argc, char** argv) {
+	int ndims = 6;
 	int nsamples = 1000;
 	int niter = 1000;
-	int dims[5] = {2,3,4,10,100};
+	for(int i = 1; i<argc; i++) {
+		if(!strcmp(argv[i],"-i")) {
+			if(i+1 < argc)
+			sscanf(argv[i+1],"%d",&niter);
+		}
+		if(!strcmp(argv[i],"-s")) {
+			if(i+1 < argc)
+			sscanf(argv[i+1],"%d",&nsamples);
+		}
+	}
+	int dims[] = {2,3,4,7,10,100};
 	char fname[20];
 	//cubes with warm start
 	for(int i = 0; i<ndims; i++) {
