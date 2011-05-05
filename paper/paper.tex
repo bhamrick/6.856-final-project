@@ -54,9 +54,9 @@ First, we want to show that these two transition functions both have the uniform
 
 \begin{theorem} \end{theorem}
 
-It is also shown in \cite{Smith} that the distributions from a Markov chain eventually converge to this stationary uniform distribution.
+It is also shown in \cite{Smith} that the distributions from a Markov chain eventually converge to this stationary uniform distribution. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
 
-However, we can also show that these algorithms may take exponentially long to converge. Suppose $\mathcal{R}$ is an $n$-dimensional cube $[-1,1]^n$, and suppose $x_0 = (1 - \epsilon, 1-\epsilon, ..., 1-\epsilon)$ for some small $\epsilon$. If we sample a point randomly from our transition distribution, then the probability that we choose a point in $\mathcal{R}$ is exponentially small in $n$. Thus, we end up ``stuck" at this point for a very long time.
+%we can also show that these algorithms may take exponentially long to converge. Suppose $\mathcal{R}$ is an $n$-dimensional cube $[-1,1]^n$, and suppose $x_0 = (1 - \epsilon, 1-\epsilon, ..., 1-\epsilon)$ for some small $\epsilon$. If we sample a point randomly from our transition distribution, then the probability that we choose a point in $\mathcal{R}$ is exponentially small in $n$. Thus, we end up ``stuck" at this point for a very long time. We attempt to fix this problem in the next section.
 
 \section{Adaptive Ball Walking and Metropolis}
 
