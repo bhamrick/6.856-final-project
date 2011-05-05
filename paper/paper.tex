@@ -98,8 +98,8 @@ These ideas are made more precise with the following bound, from \cite{Vempala}:
 
 \begin{theorem}[{\bf Hit-and-run bound}] Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
 \begin{center}$m = \displaystyle 10^{11}\frac{n^3 R^2}{r^2}\ln\frac{R}{d\epsilon}$\end{center}
-steps, the total variation distance of the chain is within $\epsilon$ of the uniform distribution. That is, if $\mu$ is the uniform distribution and $\sigma$ is the the distribution of the chain after $m$ steps, then
-\begin{center}$\displaystyle \sup_{r \in \mathcal{R}} |\mu(r) - \sigma(r)| \le \epsilon$.\end{center}
+steps, the total variation distance of the chain is within $\epsilon$ of the uniform distribution. That is, if $\mu$ is the uniform distribution and $P$ is the the distribution of the chain after $m$ steps, then
+\begin{center}$\displaystyle \sup_{r \in \mathcal{R}} |\mu(r) - P(r)| \le \epsilon$.\end{center}
 \end{theorem}
 
 This bound is polynomial in $n$, so in theory, it is better than the Metropolis methods. The constant, however, is very larger, and so our hope is that, when tested in practice, the hit-and-run method will mix to the uniform distribution even faster than in the time given by this bound.
