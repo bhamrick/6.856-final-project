@@ -66,7 +66,11 @@ We will let $S$ be the set of all states of the chain and $P(x,y)$ be the value 
 where here we have used the fact that $\mu(x) = \mu(y)$, $P(x,y) = P(y,x)$, and that we can interchange the order of integration by Fubini's theorem because the double integral is a probability, and therefore finite and the integrand is always positive. However, we can see that this last quantity is the probability of starting at a point in $A$ and moving to a point in $S$. Since we will always move to a point in $S$, that quantity is just the probability that we start in $A$, which is simply $\int_A \mu(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$, as desired.
 \end{proof}
 
-It is also shown in \cite{Smith} that the distributions from a Markov chain eventually converge to this stationary uniform distribution. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
+This theorem allows us to conclude that both Metropolis methods we are considering, the ball-walking and the Gaussian-walking, have a uniform stationary distribution. First consider the ball walking method. Let $V$ be the volume of the ball that we sample from, and let $r$ be its radius. Then for any points $x,y\in\mathcal{R}$, with $x\ne y$, we have $P_\text{ball}(x,y) = P_\text{ball}(y,x) = \frac{1}{V}$ if $||x-y||_2 \le r$ and $P_\text{ball}(x,y) = P_\text{ball}(y,x) = 0$ otherwise.
+
+In the case of the Gaussian-walking, we simply get $P_\text{Gaussian}(x,y) = P_\text{Gaussian}(y,x) = e^{-||x-y||_2^2 / 2\sigma^2}$ for any two points $x\ne y$, where $\sigma$ is the standard deviation of any coordinate.
+
+Thus, both ball-walking and Gaussian-walking have a stationary uniform distribution. It is also shown in \cite{Smith} that the distributions from a Markov chain with a symmetric transition function eventually \emph{converge} to this stationary uniform distribution. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
 
 %we can also show that these algorithms may take exponentially long to converge. Suppose $\mathcal{R}$ is an $n$-dimensional cube $[-1,1]^n$, and suppose $x_0 = (1 - \epsilon, 1-\epsilon, ..., 1-\epsilon)$ for some small $\epsilon$. If we sample a point randomly from our transition distribution, then the probability that we choose a point in $\mathcal{R}$ is exponentially small in $n$. Thus, we end up ``stuck" at this point for a very long time. We attempt to fix this problem in the next section.
 
@@ -101,6 +105,8 @@ This bound is polynomial in $n$, so in theory, it is better than the Metropolis 
 One potential drawback of this method is that it needs to find $\ell \cap \mathcal{R}$ given $\ell$. Given a membership oracle for $\mathcal{R}$, we can find the endpoints (up to some specified precision) of $\ell$ with a binary search. Any step of the hit-and-run method takes much longer than any step of the ball-walking method. Thus, the hit-and-run method is only an improvement in the number of transition steps that we want to use; if this is large enough to overcome the slowdown from the binary search (and in theory, it should be), then it will also have an improved runtime.
 
 \section{Implementation Details}
+
+To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run.
 
 \section{Results}
 
