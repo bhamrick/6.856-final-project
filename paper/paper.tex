@@ -88,7 +88,7 @@ Since the nonadaptive methods converge to the stationary distribution from any s
 
 We now consider the hit-and-run method for sampling. Recall that the idea behind this method is to transition as follows: from a point $x \in \mathcal{R}$, randomly choose a line $\ell$ through $x$, and then randomly choose a point on $\ell \cap \mathcal{R}$ to jump to.
 
-Intuitively, we see that this ought to avoid the issue with the Metropolis methods; the hit-and-run method will always be able to jump to another point on the line, whereas the Metropolis methods would often fail to jump. Consider again the case where our starting point is near the corner of the cube. The Metropolis methods would fail to jump all but an exponentially small fraction of the time. On the other hand, the hit-and-run method, which will always move at least slightly, is likely to move away from the corner in at least one dimension, enabling the random walk to slowly ``escape" the corner.
+Intuitively, we see that this ought to avoid the issue with the Metropolis methods; the hit-and-run method will always be able to jump to another point on the line, whereas the Metropolis methods would often fail to jump. Consider again the case where our starting point is near the corner of the cube. The Metropolis methods would fail to jump all but an exponentially small fraction of the time. On the other hand, the hit-and-run method, which will always move at least slightly, is likely to move away from the corner in at least one dimension, enabling the random walk to slowly ``escape'' the corner.
 
 These ideas are made more precise with the following bound, from \cite{Vempala}:
 
