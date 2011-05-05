@@ -108,7 +108,50 @@ One potential drawback of this method is that it needs to find $\ell \cap \mathc
 
 \section{Implementation Details}
 
-To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run.
+To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run. The five methods were implemented in C++ and tested on several test regions of various dimensions: a cube, a sphere, and a regular simplex, all definied by separation oracles. Real numbers were represented by 64-bit double precision, although random numbers were generated with 31 bits.
+
+We had to be able to sample from Gaussians (for Gaussian-walking) and we had to be able to uniformly sample directions in $\mathbb{R}^n$ (for ball-walking). To sample Gaussians, we use the following method from \cite{Marsaglia}: generate a random pair $(x,y)$ from the unit circle (sample from the square $[-1,1]^2$ until we get a point in the circle). Conditioned on $s = x^2 + y^2 < 1$, we get that
+\begin{center}
+$\displaystyle x_1 = x\sqrt{\frac{-\ln(s)}{s}}$ and $\displaystyle y_1 = y\sqrt{\frac{-\ln(s)}{s}}$
+\end{center}
+are independent Gaussian variables with standard deviation $\sigma = 1/\sqrt{2}$ centered at $0$. Once we can sample from Gaussians, it is easy to sample directions uniformly: we just choose every coordinate independently from a Gaussian of center $0$ with some standard deviation $\sigma$. It is easy to see that this is uniform over all directions. Let $P$ be the probaility distribution for this. For any $x\in\mathbb{R}^n$, we get that $P(x) = e^{-||x||_2^2 / 2\sigma^2}$, which depends only on the norm $||x||_2$, not on the direction.
+
+Here is the code for the separation oracles which define the cube, the sphere, and the simplex:
+
+\begin{quote}
+\begin{verbatim}
+bool cube_separation_oracle(point p) {
+    for(int i = 0; i<p.n; i++) {
+        if(p.x[i] <= -1 || p.x[i] >= 1) return false;
+    }
+    return true;
+}
+
+bool sphere_separation_oracle(point p) {
+    real square_norm = 0.0;
+    for(int i = 0; i<p.n; i++) {
+        square_norm += p.x[i] * p.x[i];
+    }
+    return square_norm < 1.0;
+}
+
+bool simplex_separation_oracle(point p) {
+    real c = (1.0 - sqrt(1.0 + (real)p.n)) / (real)p.n;
+    real coordsum = 0.0;
+    for(int i = 0; i < p.n; i++) {
+         coordsum += p.x[i];
+    }
+    real lambda = (1.0 - (real)p.n * c) / (coordsum - (real)p.n * c);
+    if(lambda < 1.0)
+        return false;
+    for(int i = 0; i < p.n; i++) {
+        if(c + lambda * (p.x[i] - c) < 0.0f)
+            return false;
+    }
+    return true;
+}
+\end{verbatim}
+\end{quote}
 
 \section{Results}
 
@@ -119,6 +162,8 @@ To test how these algorithms performed in practice, we implemented five algorith
 \begin{thebibliography}{99}
 
 \bibitem{Dabbene} Dabbene, F., ``A randomized cutting plane scheme for convex optimization,'' Computer-Aided Control Systems, 2008. CACSD 2008. IEEE International Conference on , vol., no., pp.120-125, 3-5 Sept. 2008.
+
+\bibitem{Marsaglia} Marsaglia, G. and Bray, T.A. ``A Convenient Method for Generating Normal Variables." \emph{SIAM Review} Vol. 6, No. 3 (Jul., 1964), pp. 260-264.
 
 \bibitem{Vempala} Lov\'asz, L. and Vempala, S. Hit-and-Run from a corner. \emph{SIAM Journal on Computing}, 35(4):9851005, 2006.
 
