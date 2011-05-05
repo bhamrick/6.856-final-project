@@ -33,9 +33,9 @@
 
 \section{Introduction}
 
-~~~ We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
+~~~ We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given an $n$-dimensional convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
 
-Here, we study three Markov chain-based methods for sampling, the \emph{ball-walking} method, the \emph{metropolis} method and the \emph{hit-and-run} method, and we see how they perform comparitively in practice. The ball-walking method is the simpler of the two. We walk around the region in the following way: from a point $x$, we choose a random point in a ball around that point. If this new point lies in the convex region, then we jump to it; otherwise, we stay at $x$. We get a Markov chain $x_0, x_1, ...$, and after sufficiently many iterations, we take the point we are at to be our random point.
+Here, we study three Markov chain-based methods for sampling, the \emph{ball-walking} method, the \emph{metropolis} method and the \emph{hit-and-run} \cite{Vempala} method, and we see how they perform comparitively in practice. The ball-walking method is the simpler of the two. We walk around the region in the following way: from a point $x$, we choose a random point in a ball around that point. If this new point lies in the convex region, then we jump to it; otherwise, we stay at $x$. We get a Markov chain $x_0, x_1, ...$, and after sufficiently many iterations, we take the point we are at to be our random point.
 
 The metropolis method also performs a random walk, but in a different way. Instead of sampling from a ball, it samples from a multivariate gaussian centered at the current point. As in ball-walking, it moves to that point if it lies in $\mathcal{R}$.
 
@@ -46,6 +46,10 @@ It is known that all of these transition functions have a uniform stationary dis
 The aim of this paper is to compare the performance in practice of these methods, which we have implemented and tested on high-dimensional convex regions.
 
 \section{Ball Walking and Metropolis}
+
+The ball-walking and metropolis methods both have the same basic structure. A transition in the Markov chain works simply by choosing another point from some distribution centered at our current location; if that point is in the convex region $\mathcal{R}$, then we move to that point; otherwise, we stay. The only difference between the two methods is the distribution we use. Ball-walking chooses a point randomly from a ball, and metropolis chooses each coordinate from a Gaussian.
+
+First, we want to show that these two transition functions both have the uniform distribution as a stationary distribution. To show this, we use the following fact, from \cite{Smith}.
 
 \section{Adaptive Ball Walking and Metropolis}
 
