@@ -29,6 +29,9 @@ real rand_one_sided() {
 point::point(int n) {
 	this->n = n;
 	this->x = new real[n];
+	for(int i = 0; i<n; i++) {
+		this->x[i] = 0.0;
+	}
 }
 
 point & point::operator+=(point other) {
