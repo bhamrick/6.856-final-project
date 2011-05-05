@@ -10,6 +10,11 @@ bool sphere_separation_oracle(point);
 bool simplex_separation_oracle(point);
 
 int main(int argc, char** argv) {
+	point p(10);
+	for(int i = 0; i < 10; i++)
+		p.x[i] = 0.0;
+	printf("%c\n", simplex_separation_oracle(p) ? 't' : 'f');
+
 	int ndims = 6;
 	int nsamples = 1000;
 	int niter = 1000;
@@ -169,17 +174,17 @@ bool sphere_separation_oracle(point p) {
 }
 
 bool simplex_separation_oracle(point p) {
-	real c = (1 - sqrt(1 + (real)p.n)) / (real)p.n;
+	real c = (1.0 - sqrt(1.0 + (real)p.n)) / (real)p.n;
 	real coordsum = 0.0;
 	for(int i = 0; i < p.n; i++) {
 		coordsum += p.x[i];
 	}
-	real lambda = (1.0 - (real)p.n*c) / (coordsum - (real)p.n * c);
+	real lambda = (1.0 - (real)p.n * c) / (coordsum - (real)p.n * c);
 	if(lambda < 1.0)
 		return false;
+	printf("lambda = %lf\n, c = %lf\n", lambda, c);
 	for(int i = 0; i < p.n; i++) {
-		real x1 = c + lambda * (p.x[i] - c);
-		if(x1 < 0.0 || x1 > 1.0)
+		if(c + lambda * (p.x[i] - c) < 0.0f)
 			return false;
 	}
 	return true;
