@@ -4,10 +4,11 @@ LD=g++
 CCFLAGS=-O2 -I. 
 LDFLAGS=-O2 
 
-TARGETS=ballwalk ballwalk_adaptive hitandrun
+TARGETS=ballwalk ballwalk_adaptive hitandrun metropolis
 SHARED_OBJECTS=shared.o main.o
 BALLWALK_OBJECTS=ballwalk.o
 BALLWALK_ADAPTIVE_OBJECTS=ballwalk_adaptive.o
+METROPOLIS_OBJECTS=metropolis.o
 HITANDRUN_OBJECTS=hitandrun.o
 
 all: $(TARGETS)
@@ -20,6 +21,9 @@ ballwalk_adaptive: $(SHARED_OBJECTS) $(BALLWALK_ADAPTIVE_OBJECTS)
 
 hitandrun: $(SHARED_OBJECTS) $(HITANDRUN_OBJECTS)
 	$(LD) -o hitandrun $(LDFLAGS) $(SHARED_OBJECTS) $(HITANDRUN_OBJECTS)
+
+metropolis: $(SHARED_OBJECTS) $(METROPOLIS_OBJECTS)
+	$(LD) -o metropolis $(LDFLAGS) $(SHARED_OBJECTS) $(METROPOLIS_OBJECTS)
 
 clean:
 	rm -f $(TARGETS) $(SHARED_OBJECTS) $(BALLWALK_OBJECTS) $(HITANDRUN_OBJECTS)
