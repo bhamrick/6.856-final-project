@@ -127,6 +127,10 @@ $\displaystyle x_1 = x\sqrt{\frac{-\ln(s)}{s}}$ and $\displaystyle y_1 = y\sqrt{
 \end{center}
 are independent Gaussian variables with standard deviation $\sigma = 1/\sqrt{2}$ centered at $0$. Once we can sample from Gaussians, it is easy to sample directions uniformly: we just choose every coordinate independently from a Gaussian of center $0$ with some standard deviation $\sigma$. It is easy to see that this is uniform over all directions. Let $P$ be the probaility distribution for this. For any $x\in\mathbb{R}^n$, we get that $P(x) = e^{-||x||_2^2 / 2\sigma^2}$, which depends only on the norm $||x||_2$, not on the direction.
 
+\subsection{The sampling}
+
+For each sampling method and for each test case, we generated $1000$ samples. In most cases, we used $5000$ iterations of our random walk's transition function in order to generate each sample. However, as noted above, the hit-and-run method is slower due to its binary search. We binary search up to a precision of $10^{-12}$, which requires approximately $40$ calls to the membership oracle for each endpoint. We found empirically that transitioning only $1200$ times caused it to run just about as fast as the other methods on $5000$ transitions. Therefore, we also ran tests with only $1200$ transitions for the hit-and-run.
+
 \section{Results}
 
 \section{Conclusion}
