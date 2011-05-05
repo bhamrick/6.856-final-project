@@ -109,6 +109,47 @@ int main(int argc, char** argv) {
 		}
 		fclose(fout);
 	}
+	//simplex with warm start
+	for(int i = 0; i<ndims; i++) {
+		sprintf(fname,"simplex%d_warm",dims[i]);
+		printf("Working on simplex of dimension %d with a warm start\n",dims[i]);
+		point **sample;
+		sample = new point*[nsamples];
+		for(int j = 0; j<nsamples; j++) {
+			sample[j] = new point(dims[i]);
+			(*sample[j]) = random_sample(*sample[j],simplex_separation_oracle,niter);
+		}
+		FILE *fout = fopen(fname,"w");
+		for(int j = 0; j<nsamples; j++) {
+			fprintf(fout,"%lf",sample[j]->x[0]);
+			for(int k = 1; k<dims[i]; k++) {
+				fprintf(fout," %lf",sample[j]->x[k]);
+			}
+			fprintf(fout,"\n");
+		}
+		fclose(fout);
+	}
+	//simplex with cold start
+	for(int i = 0; i<ndims; i++) {
+		sprintf(fname,"simplex%d_cold",dims[i]);
+		printf("Working on simplex of dimension %d with a cold start\n",dims[i]);
+		point **sample;
+		sample = new point*[nsamples];
+		for(int j = 0; j<nsamples; j++) {
+			sample[j] = new point(dims[i]);
+			sample[j]->x[0] = 1-1e-4;
+			(*sample[j]) = random_sample(*sample[j],simplex_separation_oracle,niter);
+		}
+		FILE *fout = fopen(fname,"w");
+		for(int j = 0; j<nsamples; j++) {
+			fprintf(fout,"%lf",sample[j]->x[0]);
+			for(int k = 1; k<dims[i]; k++) {
+				fprintf(fout," %lf",sample[j]->x[k]);
+			}
+			fprintf(fout,"\n");
+		}
+		fclose(fout);
+	}
 	return 0;
 }
 
@@ -133,7 +174,7 @@ bool simplex_separation_oracle(point p) {
 	for(int i = 0; i < p.n; i++) {
 		coordsum += p.x[i];
 	}
-	real lambda = ((real)p.n * (1.0 - c)) / (coordsum - (real)p.n * c);
+	real lambda = (1.0 - (real)p.n*c) / (coordsum - (real)p.n * c);
 	if(lambda < 1.0)
 		return false;
 	for(int i = 0; i < p.n; i++) {
