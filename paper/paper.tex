@@ -15,6 +15,7 @@
 \usepackage[dvips]{color}
 \usepackage{epsfig}
 \usepackage{mathrsfs}
+\usepackage{indentfirst}
 
 \include{header}
 
@@ -33,7 +34,7 @@
 
 \section{Introduction}
 
-~~~ We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
+We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
 
 Here, we study three Markov chain-based methods for sampling, the \emph{ball-walking} method, the \emph{metropolis} method and the \emph{hit-and-run} method, and we see how they perform comparitively in practice. The ball-walking method is the simpler of the two. We walk around the region in the following way: from a point $x$, we choose a random point in a ball around that point. If this new point lies in the convex region, then we jump to it; otherwise, we stay at $x$. We get a Markov chain $x_0, x_1, ...$, and after sufficiently many iterations, we take the point we are at to be our random point.
 
