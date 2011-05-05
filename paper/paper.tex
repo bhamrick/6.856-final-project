@@ -97,9 +97,11 @@ Intuitively, we see that this ought to avoid the issue with the Metropolis metho
 These ideas are made more precise with the following bound, from \cite{Vempala}:
 
 \begin{theorem}[{\bf Hit-and-run bound}] Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
-\begin{center}$\displaystyle 10^{11}\frac{n^3 R^2}{r^2}\ln\frac{R}{d\epsilon}$\end{center}
-steps, the variation distance of the chain is within $\epsilon$ of the uniform distribution.
+\begin{center}$m = \displaystyle 10^{11}\frac{n^3 R^2}{r^2}\ln\frac{R}{d\epsilon}$\end{center}
+steps, the total variation distance of the chain is within $\epsilon$ of the uniform distribution. That is, if $\mu$ is the uniform distribution and $\sigma$ is the the distribution of the chain after $m$ steps, then
+\begin{center}$\displaystyle \sup_{r \in \mathcal{R}} |\mu(r) - \sigma(r)| \le \epsilon$.\end{center}
 \end{theorem}
+
 This bound is polynomial in $n$, so in theory, it is better than the Metropolis methods. The constant, however, is very larger, and so our hope is that, when tested in practice, the hit-and-run method will mix to the uniform distribution even faster than in the time given by this bound.
 
 One potential drawback of this method is that it needs to find $\ell \cap \mathcal{R}$ given $\ell$. Given a membership oracle for $\mathcal{R}$, we can find the endpoints (up to some specified precision) of $\ell$ with a binary search. Any step of the hit-and-run method takes much longer than any step of the ball-walking method. Thus, the hit-and-run method is only an improvement in the number of transition steps that we want to use; if this is large enough to overcome the slowdown from the binary search (and in theory, it should be), then it will also have an improved runtime.
