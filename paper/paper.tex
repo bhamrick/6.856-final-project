@@ -56,6 +56,7 @@ First, we want to show that these two transition functions both have the uniform
 
 \begin{theorem}
 Any Markov chain whose state space is an open subset of $\mathbb{R}^n$ with a symmetric transition distribution has the uniform distribution as a stationary distribution.
+\label{symmetric}
 \end{theorem}
 \begin{proof}
 We will let $S$ be the set of all states of the chain and $P(x,y)$ be the value of the transition distribution associated with moving from $x$ to $y$. Furthermore, let $\mu$ be the uniform distribution on $S$, i.e. $\mu(x) = \frac{1}{\text{Vol}(S)}$. Then we want to show that for every subset $A \subseteq S$, $\int_A (\mu P)(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$. To do this, notice the following:
@@ -87,6 +88,15 @@ Since the nonadaptive methods converge to the stationary distribution from any s
 \section{Hit and Run}
 
 We now consider the hit-and-run method for sampling. Recall that the idea behind this method is to transition as follows: from a point $x \in \mathcal{R}$, randomly choose a line $\ell$ through $x$, and then randomly choose a point on $\ell \cap \mathcal{R}$ to jump to.
+
+\begin{prop}
+The uniform distribution is stationary under the hit-and-run method.
+\end{prop}
+\begin{proof}
+Theorem \ref{symmetric} tells us that it suffices to show that $P(x,y) = P(y,x)$, where $P(x,y)$ is the probability distribution of transitioning from $x$ to $y$. Let $\ell$ be the line between $x$ and $y$. It is clear that in order to transition from $x$ to $y$, we must first choose $\ell$ as our line around $x$ and then choose $y$ as the point to transition to. 
+
+Therefore, we have $P(x,y) = P_x(\ell)P_\ell(y)$, and $P(y,x) = P_y(\ell)P_\ell(x)$, where $P_x$ is the probability distribution of lines starting from $x$ and $P_\ell$ is the probability distribution of points once we have chosen $\ell$. However, note that $P_x(\ell) = P_y(\ell)$, since we choose lines around a point uniformly, and that $P_\ell(y) = P_\ell(x)$, since once we have chosen $\ell$, we are choosing a point uniformly along it. Thus, $P(x,y) = P(y,x)$, and by Theorem \ref{symmetric}, the uniform distribution is stationary.
+\end{proof}
 
 Intuitively, we see that this ought to avoid the issue with the Metropolis methods; the hit-and-run method will always be able to jump to another point on the line, whereas the Metropolis methods would often fail to jump. Consider again the case where our starting point is near the corner of the cube. The Metropolis methods would fail to jump all but an exponentially small fraction of the time. On the other hand, the hit-and-run method, which will always move at least slightly, is likely to move away from the corner in at least one dimension, enabling the random walk to slowly ``escape'' the corner.
 
