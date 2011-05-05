@@ -48,6 +48,8 @@ The aim of this paper is to compare the performance in practice of these methods
 
 \section{The Metropolis Method}
 
+In order to use the Metropolis method, we need to be sure that it will somehow approximate the uniform distribution. We can do this by using the fact that our transition functions are \emph{symmetric}.
+
 The Metropolis methods both have the same basic structure. A transition in the Markov chain works simply by choosing another point from some distribution centered at our current location; if that point is in the convex region $\mathcal{R}$, then we move to that point; otherwise, we stay. The only difference between the two methods is the distribution we use. Ball-walking chooses a point randomly from a ball, and Metropolis chooses each coordinate from a Gaussian.
 
 First, we want to show that these two transition functions both have the uniform distribution as a stationary distribution. To show this, we use the following fact, from \cite{Smith}.
@@ -73,6 +75,20 @@ In the case of ball walking, our step size is the radius of the ball around the 
 Since the nonadaptive methods converge to the stationary distribution from any starting distribution, this yields a method that converges to the stationary distribution, but also attempts to find a good step size in order to converge more rapidly.
 
 \section{Hit and Run}
+
+We now consider the hit-and-run method for sampling. Recall that the idea behind this method is to transition as follows: from a point $x \in \mathcal{R}$, randomly choose a line $\ell$ through $x$, and then randomly choose a point on $\ell \cap \mathcal{R}$ to jump to.
+
+Intuitively, we see that this ought to avoid the issue with the Metropolis methods; the hit-and-run method will always be able to jump to another point on the line, whereas the Metropolis methods would often fail to jump. Consider again the case where our starting point is near the corner of the cube. The Metropolis methods would fail to jump all but an exponentially small fraction of the time. On the other hand, the hit-and-run method, which will always move at least slightly, is likely to move away from the corner in at least one dimension, enabling the random walk to slowly ``escape" the corner.
+
+These ideas are made more precise with the following bound, from \cite{Vempala}:
+
+\begin{theorem}[{\bf Hit-and-run bound}] Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
+\begin{center}$\displaystyle 10^{11}\frac{n^3 R^2}{r^2}\ln\frac{R}{d\epsilon}$\end{center}
+steps, the variation distance of the chain is within $\epsilon$ of the uniform distribution.
+\end{theorem}
+This bound is polynomial in $n$, so in theory, it is better than the Metropolis methods. The constant, however, is very larger, and so our hope is that, when tested in practice, the hit-and-run method will mix to the uniform distribution even faster than in the time given by this bound.
+
+One potential drawback of this method is that it needs to find $\ell \cap \mathcal{R}$ given $\ell$. Given a membership oracle for $\mathcal{R}$, we can find the endpoints (up to some specified precision) of $\ell$ with a binary search. Any step of the hit-and-run method takes much longer than any step of the ball-walking method. Thus, the hit-and-run method is only an improvement in the number of transition steps that we want to use; if this is large enough to overcome the slowdown from the binary search (and in theory, it should be), then it will also have an improved runtime.
 
 \section{Implementation Details}
 
