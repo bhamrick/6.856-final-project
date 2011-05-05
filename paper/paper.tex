@@ -34,7 +34,7 @@
 
 \section{Introduction}
 
-We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
+We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle} which determines whether a given point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
 
 Here, we study two Markov chain-based methods for sampling, the \emph{Metropolis} method \cite{Metropolis}, and the \emph{hit-and-run} \cite{Vempala} method, and we see how they perform comparitively in practice. The etropolis method is the simpler of the two. We walk around the region in the following way: from a point $x$, we choose another random point in a ball around that point from some distribution. If this new point lies in the convex region, then we jump to it; otherwise, we stay at $x$. We get a Markov chain $x_0, x_1, ...$, and after sufficiently many iterations, we take the point we are at to be our random point.
 
@@ -52,7 +52,17 @@ The Metropolis methods both have the same basic structure. A transition in the M
 
 First, we want to show that these two transition functions both have the uniform distribution as a stationary distribution. To show this, we use the following fact, from \cite{Smith}.
 
-\begin{theorem} \end{theorem}
+\begin{theorem}
+Any Markov chain whose state space is an open subset of $\mathbb{R}^n$ with a symmetric transition distribution has the uniform distribution as a stationary distribution.
+\end{theorem}
+\begin{proof}
+We will let $S$ be the set of all states of the chain and $P(x,y)$ be the value of the transition distribution associated with moving from $x$ to $y$. Furthermore, let $\mu$ be the uniform distribution on $S$, i.e. $\mu(x) = \frac{1}{\text{Vol}(S)}$. Then we want to show that for every subset $A \subseteq S$, $\int_A (\mu P)(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$. To do this, notice the following:
+\begin{align*}
+\int_A (\mu P)(y)\, dy &= \int_A \int_S \mu(x)P(x,y)\, dx\, dy \\
+&= \int_S \int_A \mu(y)P(y,x)\, dy\, dx
+\end{align*}
+where here we have used the fact that $\mu(x) = \mu(y)$, $P(x,y) = P(y,x)$, and that we can interchange the order of integration by Fubini's theorem because the double integral is a probability, and therefore finite and the integrand is always positive. However, we can see that this last quantity is the probability of starting at a point in $A$ and moving to a point in $S$. Since we will always move to a point in $S$, that quantity is just the probability that we start in $A$, which is simply $\int_A \mu(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$, as desired.
+\end{proof}
 
 It is also shown in \cite{Smith} that the distributions from a Markov chain eventually converge to this stationary uniform distribution. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
 
