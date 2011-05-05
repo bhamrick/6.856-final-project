@@ -33,9 +33,15 @@
 
 \section{Introduction}
 
-We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
+~~~ We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
 
-Here, we study two Markov chain-based methods for sampling, the ball-walking method and the hit-and-run method and see how they perform comparitively in practice.
+Here, we study two Markov chain-based methods for sampling, the \emph{ball-walking} method and the \emph{hit-and-run} method, and we see how they perform comparitively in practice. The ball-walking method is the simpler of the two. We walk around the region in the following way: from a point $x$, we choose a random point in a ball around that point. If this new point lies in the convex region, then we jump to it; otherwise, we stay at $x$. We get a Markov chain $x_0, x_1, ...$, and after sufficiently many iterations, we take the point we are at to be our random point.
+
+The hit-and-run method also performs a random walk, but in a different way. At a point $x$, we first choose a random direction, uniformly. Now consider the two-sided line $\ell$ which goes through $x$ which goes in this direction. Choose a point uniformly randomly from $\ell\cap\mathcal{R}$, and jump to that point.
+
+It is known that both of these transition functions have a uniform stationary distribution, and that the distributions of the Markov chain eventually converge to these uniform distributions. In theory, the hit-and-run method converges must faster: the ball-walking method requires at least an amount of time exponential in the number of dimensions $n$ to get an approximation to the uniform distribution that is within the desired precision, whereas the hit-and-run method requires only polynomial time. However, in this paper we introduce \emph{adaptive ball-walking}, a modification of ball-walking which adjusts the size of the ball in hopes of reducing the amount of time necessary.
+
+The aim of this paper is to compare the performance in practice of these three methods, which we have implemented and tested on high-dimensional convex regions.
 
 \section{Ball Walking}
 
