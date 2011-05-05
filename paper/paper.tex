@@ -15,6 +15,7 @@
 \usepackage[dvips]{color}
 \usepackage{epsfig}
 \usepackage{mathrsfs}
+\usepackage{indentfirst}
 
 \include{header}
 
@@ -33,7 +34,7 @@
 
 \section{Introduction}
 
-~~~ We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given an $n$-dimensional convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
+We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle}, a black box which can determine whether any point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
 
 Here, we study three Markov chain-based methods for sampling, the \emph{ball-walking} method, the \emph{metropolis} method and the \emph{hit-and-run} \cite{Vempala} method, and we see how they perform comparitively in practice. The ball-walking method is the simpler of the two. We walk around the region in the following way: from a point $x$, we choose a random point in a ball around that point. If this new point lies in the convex region, then we jump to it; otherwise, we stay at $x$. We get a Markov chain $x_0, x_1, ...$, and after sufficiently many iterations, we take the point we are at to be our random point.
 
@@ -65,11 +66,13 @@ First, we want to show that these two transition functions both have the uniform
 
 \begin{thebibliography}{99}
 
-\bibitem{Dabbene} Dabbene, F., ``A randomized cutting plane scheme for convex optimization," Computer-Aided Control Systems, 2008. CACSD 2008. IEEE International Conference on , vol., no., pp.120-125, 3-5 Sept. 2008.
+\bibitem{Dabbene} Dabbene, F., ``A randomized cutting plane scheme for convex optimization,'' Computer-Aided Control Systems, 2008. CACSD 2008. IEEE International Conference on , vol., no., pp.120-125, 3-5 Sept. 2008.
 
-\bibitem{Vempala} L. Lov\'asz and S. Vempala. Hit-and-Run from a corner. \emph{SIAM Journal on Computing}, 35(4):9851005, 2006.
+\bibitem{Vempala} Lov\'asz, L. and Vempala, S. Hit-and-Run from a corner. \emph{SIAM Journal on Computing}, 35(4):9851005, 2006.
 
-\bibitem{Smith} R.L. Smith, \emph{Efficient Monte-Carlo procedures for generating points uniformly distributed over
+\bibitem{Metropolis} Metropolis, N., Rosenbluth, M.N., Teller, A.H., Teller, E. ``Equations of State Calculations by Fast Computing Machines.'' \emph{Journal of Chemical Physics} \textbf{21} (6) pp. 1087-1092, June, 1953.
+
+\bibitem{Smith} Smith, R.L. \emph{Efficient Monte-Carlo procedures for generating points uniformly distributed over
 bounded regions}, Oper. Res., 32 (1984), pp. 1296-1308.
 
 \end{thebibliography}
