@@ -16,6 +16,7 @@
 \usepackage{epsfig}
 \usepackage{mathrsfs}
 \usepackage{indentfirst}
+\usepackage{subfig}
 
 \include{header}
 
@@ -157,6 +158,13 @@ For Gaussian-walking methods, the standard deviation of each Gaussian is $1/(10\
 Finally, note that when we say that we ran an adaptive method for $m$ iterations, we mean that we first ran $m/2$ adaptive transitions, and then $m/2$ non-adaptive iterations, using the step-size that was left at the end of the adaptive transitions.
 
 \section{Results}
+
+\begin{figure}
+\centering
+\subfloat[Standard]{\epsfig{file=images/ballwalk_5000_cube10_cold,width=8cm}}
+\subfloat[Adaptive]{\epsfig{file=images/ballwalk_adaptive_5000_cube10_cold,width=8cm}}
+\caption{Ball walking methods on the 10 dimensional cube}
+\end{figure}
 
 \section{Conclusion}
 

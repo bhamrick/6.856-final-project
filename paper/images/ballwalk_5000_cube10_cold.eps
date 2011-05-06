@@ -1,0 +1,1735 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ballwalk_5000_cube10_cold.eps
+%%Creator: gnuplot 4.4 patchlevel 2 (Gentoo revision r1)
+%%CreationDate: Fri May  6 00:34:38 2011
+%%DocumentFonts: (atend)
+%%BoundingBox: 50 50 410 302
+%%EndComments
+%%BeginProlog
+/gnudict 256 dict def
+gnudict begin
+%
+% The following true/false flags may be edited by hand if desired.
+% The unit line width and grayscale image gamma correction may also be changed.
+%
+/Color false def
+/Blacktext false def
+/Solid false def
+/Dashlength 1 def
+/Landscape false def
+/Level1 false def
+/Rounded false def
+/ClipToBoundingBox false def
+/TransparentPatterns false def
+/gnulinewidth 5.000 def
+/userlinewidth gnulinewidth def
+/Gamma 1.0 def
+%
+/vshift -46 def
+/dl1 {
+  10.0 Dashlength mul mul
+  Rounded { currentlinewidth 0.75 mul sub dup 0 le { pop 0.01 } if } if
+} def
+/dl2 {
+  10.0 Dashlength mul mul
+  Rounded { currentlinewidth 0.75 mul add } if
+} def
+/hpt_ 31.5 def
+/vpt_ 31.5 def
+/hpt hpt_ def
+/vpt vpt_ def
+Level1 {} {
+/SDict 10 dict def
+systemdict /pdfmark known not {
+  userdict /pdfmark systemdict /cleartomark get put
+} if
+SDict begin [
+  /Title (ballwalk_5000_cube10_cold.eps)
+  /Subject (gnuplot plot)
+  /Creator (gnuplot 4.4 patchlevel 2 (Gentoo revision r1))
+  /Author (bhamrick)
+%  /Producer (gnuplot)
+%  /Keywords ()
+  /CreationDate (Fri May  6 00:34:38 2011)
+  /DOCINFO pdfmark
+end
+} ifelse
+/doclip {
+  ClipToBoundingBox {
+    newpath 50 50 moveto 410 50 lineto 410 302 lineto 50 302 lineto closepath
+    clip
+  } if
+} def
+%
+% Gnuplot Prolog Version 4.4 (August 2010)
+%
+%/SuppressPDFMark true def
+%
+/M {moveto} bind def
+/L {lineto} bind def
+/R {rmoveto} bind def
+/V {rlineto} bind def
+/N {newpath moveto} bind def
+/Z {closepath} bind def
+/C {setrgbcolor} bind def
+/f {rlineto fill} bind def
+/g {setgray} bind def
+/Gshow {show} def   % May be redefined later in the file to support UTF-8
+/vpt2 vpt 2 mul def
+/hpt2 hpt 2 mul def
+/Lshow {currentpoint stroke M 0 vshift R 
+	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+/Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
+	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+/Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
+	Blacktext {gsave 0 setgray show grestore} {show} ifelse} def
+/UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
+  /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
+/DL {Color {setrgbcolor Solid {pop []} if 0 setdash}
+ {pop pop pop 0 setgray Solid {pop []} if 0 setdash} ifelse} def
+/BL {stroke userlinewidth 2 mul setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/AL {stroke userlinewidth 2 div setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+/UL {dup gnulinewidth mul /userlinewidth exch def
+	dup 1 lt {pop 1} if 10 mul /udl exch def} def
+/PL {stroke userlinewidth setlinewidth
+	Rounded {1 setlinejoin 1 setlinecap} if} def
+3.8 setmiterlimit
+% Default Line colors
+/LCw {1 1 1} def
+/LCb {0 0 0} def
+/LCa {0 0 0} def
+/LC0 {1 0 0} def
+/LC1 {0 1 0} def
+/LC2 {0 0 1} def
+/LC3 {1 0 1} def
+/LC4 {0 1 1} def
+/LC5 {1 1 0} def
+/LC6 {0 0 0} def
+/LC7 {1 0.3 0} def
+/LC8 {0.5 0.5 0.5} def
+% Default Line Types
+/LTw {PL [] 1 setgray} def
+/LTb {BL [] LCb DL} def
+/LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
+/LT0 {PL [] LC0 DL} def
+/LT1 {PL [4 dl1 2 dl2] LC1 DL} def
+/LT2 {PL [2 dl1 3 dl2] LC2 DL} def
+/LT3 {PL [1 dl1 1.5 dl2] LC3 DL} def
+/LT4 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC5 DL} def
+/LT6 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 4 dl2] LC8 DL} def
+/Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
+/Dia {stroke [] 0 setdash 2 copy vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke
+  Pnt} def
+/Pls {stroke [] 0 setdash vpt sub M 0 vpt2 V
+  currentpoint stroke M
+  hpt neg vpt neg R hpt2 0 V stroke
+ } def
+/Box {stroke [] 0 setdash 2 copy exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke
+  Pnt} def
+/Crs {stroke [] 0 setdash exch hpt sub exch vpt add M
+  hpt2 vpt2 neg V currentpoint stroke M
+  hpt2 neg 0 R hpt2 vpt2 V stroke} def
+/TriU {stroke [] 0 setdash 2 copy vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke
+  Pnt} def
+/Star {2 copy Pls Crs} def
+/BoxF {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath fill} def
+/TriUF {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath fill} def
+/TriD {stroke [] 0 setdash 2 copy vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke
+  Pnt} def
+/TriDF {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath fill} def
+/DiaF {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath fill} def
+/Pent {stroke [] 0 setdash 2 copy gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore Pnt} def
+/PentF {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath fill grestore} def
+/Circle {stroke [] 0 setdash 2 copy
+  hpt 0 360 arc stroke Pnt} def
+/CircleF {stroke [] 0 setdash hpt 0 360 arc fill} def
+/C0 {BL [] 0 setdash 2 copy moveto vpt 90 450 arc} bind def
+/C1 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C2 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C3 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C4 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C5 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc
+	2 copy moveto
+	2 copy vpt 180 270 arc closepath fill
+	vpt 0 360 arc} bind def
+/C6 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C7 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 270 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C8 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C9 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 270 450 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C10 {BL [] 0 setdash 2 copy 2 copy moveto vpt 270 360 arc closepath fill
+	2 copy moveto
+	2 copy vpt 90 180 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C11 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 180 arc closepath fill
+	2 copy moveto
+	2 copy vpt 270 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C12 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C13 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 0 90 arc closepath fill
+	2 copy moveto
+	2 copy vpt 180 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/C14 {BL [] 0 setdash 2 copy moveto
+	2 copy vpt 90 360 arc closepath fill
+	vpt 0 360 arc} bind def
+/C15 {BL [] 0 setdash 2 copy vpt 0 360 arc closepath fill
+	vpt 0 360 arc closepath} bind def
+/Rec {newpath 4 2 roll moveto 1 index 0 rlineto 0 exch rlineto
+	neg 0 rlineto closepath} bind def
+/Square {dup Rec} bind def
+/Bsquare {vpt sub exch vpt sub exch vpt2 Square} bind def
+/S0 {BL [] 0 setdash 2 copy moveto 0 vpt rlineto BL Bsquare} bind def
+/S1 {BL [] 0 setdash 2 copy vpt Square fill Bsquare} bind def
+/S2 {BL [] 0 setdash 2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S3 {BL [] 0 setdash 2 copy exch vpt sub exch vpt2 vpt Rec fill Bsquare} bind def
+/S4 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S5 {BL [] 0 setdash 2 copy 2 copy vpt Square fill
+	exch vpt sub exch vpt sub vpt Square fill Bsquare} bind def
+/S6 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S7 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt vpt2 Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S8 {BL [] 0 setdash 2 copy vpt sub vpt Square fill Bsquare} bind def
+/S9 {BL [] 0 setdash 2 copy vpt sub vpt vpt2 Rec fill Bsquare} bind def
+/S10 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt Square fill
+	Bsquare} bind def
+/S11 {BL [] 0 setdash 2 copy vpt sub vpt Square fill 2 copy exch vpt sub exch vpt2 vpt Rec fill
+	Bsquare} bind def
+/S12 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill Bsquare} bind def
+/S13 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy vpt Square fill Bsquare} bind def
+/S14 {BL [] 0 setdash 2 copy exch vpt sub exch vpt sub vpt2 vpt Rec fill
+	2 copy exch vpt sub exch vpt Square fill Bsquare} bind def
+/S15 {BL [] 0 setdash 2 copy Bsquare fill Bsquare} bind def
+/D0 {gsave translate 45 rotate 0 0 S0 stroke grestore} bind def
+/D1 {gsave translate 45 rotate 0 0 S1 stroke grestore} bind def
+/D2 {gsave translate 45 rotate 0 0 S2 stroke grestore} bind def
+/D3 {gsave translate 45 rotate 0 0 S3 stroke grestore} bind def
+/D4 {gsave translate 45 rotate 0 0 S4 stroke grestore} bind def
+/D5 {gsave translate 45 rotate 0 0 S5 stroke grestore} bind def
+/D6 {gsave translate 45 rotate 0 0 S6 stroke grestore} bind def
+/D7 {gsave translate 45 rotate 0 0 S7 stroke grestore} bind def
+/D8 {gsave translate 45 rotate 0 0 S8 stroke grestore} bind def
+/D9 {gsave translate 45 rotate 0 0 S9 stroke grestore} bind def
+/D10 {gsave translate 45 rotate 0 0 S10 stroke grestore} bind def
+/D11 {gsave translate 45 rotate 0 0 S11 stroke grestore} bind def
+/D12 {gsave translate 45 rotate 0 0 S12 stroke grestore} bind def
+/D13 {gsave translate 45 rotate 0 0 S13 stroke grestore} bind def
+/D14 {gsave translate 45 rotate 0 0 S14 stroke grestore} bind def
+/D15 {gsave translate 45 rotate 0 0 S15 stroke grestore} bind def
+/DiaE {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V closepath stroke} def
+/BoxE {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V closepath stroke} def
+/TriUE {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V closepath stroke} def
+/TriDE {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V closepath stroke} def
+/PentE {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  closepath stroke grestore} def
+/CircE {stroke [] 0 setdash 
+  hpt 0 360 arc stroke} def
+/Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
+/DiaW {stroke [] 0 setdash vpt add M
+  hpt neg vpt neg V hpt vpt neg V
+  hpt vpt V hpt neg vpt V Opaque stroke} def
+/BoxW {stroke [] 0 setdash exch hpt sub exch vpt add M
+  0 vpt2 neg V hpt2 0 V 0 vpt2 V
+  hpt2 neg 0 V Opaque stroke} def
+/TriUW {stroke [] 0 setdash vpt 1.12 mul add M
+  hpt neg vpt -1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt 1.62 mul V Opaque stroke} def
+/TriDW {stroke [] 0 setdash vpt 1.12 mul sub M
+  hpt neg vpt 1.62 mul V
+  hpt 2 mul 0 V
+  hpt neg vpt -1.62 mul V Opaque stroke} def
+/PentW {stroke [] 0 setdash gsave
+  translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
+  Opaque stroke grestore} def
+/CircW {stroke [] 0 setdash 
+  hpt 0 360 arc Opaque stroke} def
+/BoxFill {gsave Rec 1 setgray fill grestore} def
+/Density {
+  /Fillden exch def
+  currentrgbcolor
+  /ColB exch def /ColG exch def /ColR exch def
+  /ColR ColR Fillden mul Fillden sub 1 add def
+  /ColG ColG Fillden mul Fillden sub 1 add def
+  /ColB ColB Fillden mul Fillden sub 1 add def
+  ColR ColG ColB setrgbcolor} def
+/BoxColFill {gsave Rec PolyFill} def
+/PolyFill {gsave Density fill grestore grestore} def
+/h {rlineto rlineto rlineto gsave closepath fill grestore} bind def
+%
+% PostScript Level 1 Pattern Fill routine for rectangles
+% Usage: x y w h s a XX PatternFill
+%	x,y = lower left corner of box to be filled
+%	w,h = width and height of box
+%	  a = angle in degrees between lines and x-axis
+%	 XX = 0/1 for no/yes cross-hatch
+%
+/PatternFill {gsave /PFa [ 9 2 roll ] def
+  PFa 0 get PFa 2 get 2 div add PFa 1 get PFa 3 get 2 div add translate
+  PFa 2 get -2 div PFa 3 get -2 div PFa 2 get PFa 3 get Rec
+  gsave 1 setgray fill grestore clip
+  currentlinewidth 0.5 mul setlinewidth
+  /PFs PFa 2 get dup mul PFa 3 get dup mul add sqrt def
+  0 0 M PFa 5 get rotate PFs -2 div dup translate
+  0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 M 0 PFs V} for
+  0 PFa 6 get ne {
+	0 1 PFs PFa 4 get div 1 add floor cvi
+	{PFa 4 get mul 0 2 1 roll M PFs 0 V} for
+ } if
+  stroke grestore} def
+%
+/languagelevel where
+ {pop languagelevel} {1} ifelse
+ 2 lt
+	{/InterpretLevel1 true def}
+	{/InterpretLevel1 Level1 def}
+ ifelse
+%
+% PostScript level 2 pattern fill definitions
+%
+/Level2PatternFill {
+/Tile8x8 {/PaintType 2 /PatternType 1 /TilingType 1 /BBox [0 0 8 8] /XStep 8 /YStep 8}
+	bind def
+/KeepColor {currentrgbcolor [/Pattern /DeviceRGB] setcolorspace} bind def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke} 
+>> matrix makepattern
+/Pat1 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke
+	0 4 M 4 8 L 8 4 L 4 0 L 0 4 L stroke}
+>> matrix makepattern
+/Pat2 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 0 M 0 8 L
+	8 8 L 8 0 L 0 0 L fill}
+>> matrix makepattern
+/Pat3 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 8 M 8 -4 L
+	0 12 M 12 0 L stroke}
+>> matrix makepattern
+/Pat4 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -4 0 M 8 12 L
+	0 -4 M 12 8 L stroke}
+>> matrix makepattern
+/Pat5 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 8 M 4 -4 L
+	0 12 M 8 -4 L 4 12 M 10 0 L stroke}
+>> matrix makepattern
+/Pat6 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop -2 0 M 4 12 L
+	0 -4 M 8 12 L 4 -4 M 10 8 L stroke}
+>> matrix makepattern
+/Pat7 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 8 -2 M -4 4 L
+	12 0 M -4 8 L 12 4 M 0 10 L stroke}
+>> matrix makepattern
+/Pat8 exch def
+<< Tile8x8
+ /PaintProc {0.5 setlinewidth pop 0 -2 M 12 4 L
+	-4 0 M 12 8 L -4 4 M 8 10 L stroke}
+>> matrix makepattern
+/Pat9 exch def
+/Pattern1 {PatternBgnd KeepColor Pat1 setpattern} bind def
+/Pattern2 {PatternBgnd KeepColor Pat2 setpattern} bind def
+/Pattern3 {PatternBgnd KeepColor Pat3 setpattern} bind def
+/Pattern4 {PatternBgnd KeepColor Landscape {Pat5} {Pat4} ifelse setpattern} bind def
+/Pattern5 {PatternBgnd KeepColor Landscape {Pat4} {Pat5} ifelse setpattern} bind def
+/Pattern6 {PatternBgnd KeepColor Landscape {Pat9} {Pat6} ifelse setpattern} bind def
+/Pattern7 {PatternBgnd KeepColor Landscape {Pat8} {Pat7} ifelse setpattern} bind def
+} def
+%
+%
+%End of PostScript Level 2 code
+%
+/PatternBgnd {
+  TransparentPatterns {} {gsave 1 setgray fill grestore} ifelse
+} def
+%
+% Substitute for Level 2 pattern fill codes with
+% grayscale if Level 2 support is not selected.
+%
+/Level1PatternFill {
+/Pattern1 {0.250 Density} bind def
+/Pattern2 {0.500 Density} bind def
+/Pattern3 {0.750 Density} bind def
+/Pattern4 {0.125 Density} bind def
+/Pattern5 {0.375 Density} bind def
+/Pattern6 {0.625 Density} bind def
+/Pattern7 {0.875 Density} bind def
+} def
+%
+% Now test for support of Level 2 code
+%
+Level1 {Level1PatternFill} {Level2PatternFill} ifelse
+%
+/Symbol-Oblique /Symbol findfont [1 0 .167 1 0 0] makefont
+dup length dict begin {1 index /FID eq {pop pop} {def} ifelse} forall
+currentdict end definefont pop
+/MFshow {
+   { dup 5 get 3 ge
+     { 5 get 3 eq {gsave} {grestore} ifelse }
+     {dup dup 0 get findfont exch 1 get scalefont setfont
+     [ currentpoint ] exch dup 2 get 0 exch R dup 5 get 2 ne {dup dup 6
+     get exch 4 get {Gshow} {stringwidth pop 0 R} ifelse }if dup 5 get 0 eq
+     {dup 3 get {2 get neg 0 exch R pop} {pop aload pop M} ifelse} {dup 5
+     get 1 eq {dup 2 get exch dup 3 get exch 6 get stringwidth pop -2 div
+     dup 0 R} {dup 6 get stringwidth pop -2 div 0 R 6 get
+     show 2 index {aload pop M neg 3 -1 roll neg R pop pop} {pop pop pop
+     pop aload pop M} ifelse }ifelse }ifelse }
+     ifelse }
+   forall} def
+/Gswidth {dup type /stringtype eq {stringwidth} {pop (n) stringwidth} ifelse} def
+/MFwidth {0 exch { dup 5 get 3 ge { 5 get 3 eq { 0 } { pop } ifelse }
+ {dup 3 get{dup dup 0 get findfont exch 1 get scalefont setfont
+     6 get Gswidth pop add} {pop} ifelse} ifelse} forall} def
+/MLshow { currentpoint stroke M
+  0 exch R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MRshow { currentpoint stroke M
+  exch dup MFwidth neg 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/MCshow { currentpoint stroke M
+  exch dup MFwidth -2 div 3 -1 roll R
+  Blacktext {gsave 0 setgray MFshow grestore} {MFshow} ifelse } bind def
+/XYsave    { [( ) 1 2 true false 3 ()] } bind def
+/XYrestore { [( ) 1 2 true false 4 ()] } bind def
+end
+%%EndProlog
+gnudict begin
+gsave
+doclip
+50 50 translate
+0.050 0.050 scale
+0 setgray
+newpath
+(Helvetica) findfont 140 scalefont setfont
+/Helvetica findfont 140 scalefont setfont
+1.000 UL
+LTb
+546 280 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 280 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-1)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 739 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 739 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.8)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 1198 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 1198 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.6)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 1657 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 1657 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.4)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 2116 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 2116 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.2)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 2576 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 2576 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 3035 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 3035 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.2)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 3494 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 3494 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.4)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 3953 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 3953 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.6)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 4412 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 4412 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.8)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 4871 M
+63 0 V
+6338 0 R
+-63 0 V
+stroke
+462 4871 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 1)]
+] -46.7 MRshow
+1.000 UL
+LTb
+546 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+546 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-1)]
+] -46.7 MCshow
+1.000 UL
+LTb
+1186 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+1186 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.8)]
+] -46.7 MCshow
+1.000 UL
+LTb
+1826 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+1826 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.6)]
+] -46.7 MCshow
+1.000 UL
+LTb
+2466 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+2466 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.4)]
+] -46.7 MCshow
+1.000 UL
+LTb
+3106 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+3106 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 (-0.2)]
+] -46.7 MCshow
+1.000 UL
+LTb
+3747 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+3747 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0)]
+] -46.7 MCshow
+1.000 UL
+LTb
+4387 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+4387 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.2)]
+] -46.7 MCshow
+1.000 UL
+LTb
+5027 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+5027 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.4)]
+] -46.7 MCshow
+1.000 UL
+LTb
+5667 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+5667 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.6)]
+] -46.7 MCshow
+1.000 UL
+LTb
+6307 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+6307 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 0.8)]
+] -46.7 MCshow
+1.000 UL
+LTb
+6947 280 M
+0 63 V
+0 4528 R
+0 -63 V
+stroke
+6947 140 M
+[ [(Helvetica) 140.0 0.0 true true 0 ( 1)]
+] -46.7 MCshow
+1.000 UL
+LTb
+1.000 UL
+LTb
+546 4871 N
+546 280 L
+6401 0 V
+0 4591 V
+-6401 0 V
+Z stroke
+1.000 UP
+1.000 UL
+LTb
+% Begin plot #1
+1.000 UP
+1.000 UL
+LT0
+/Helvetica findfont 140 scalefont setfont
+LCb setrgbcolor
+6296 4738 M
+('ballwalk_results/cube10_cold') Rshow
+LT0
+5038 3312 Pls
+6944 4653 Pls
+2172 2400 Pls
+3362 2483 Pls
+2739 3795 Pls
+6527 3358 Pls
+5772 3636 Pls
+5877 3601 Pls
+5596 2707 Pls
+4190 3704 Pls
+6522 4381 Pls
+6259 1819 Pls
+3372 4605 Pls
+2429 2556 Pls
+5921 2084 Pls
+5021 4610 Pls
+6438 3745 Pls
+5570 4819 Pls
+2760 4301 Pls
+6476 3809 Pls
+3221 1847 Pls
+3535 1979 Pls
+6119 3943 Pls
+6343 3957 Pls
+6887 1507 Pls
+4258 3231 Pls
+5507 3675 Pls
+4721 2739 Pls
+3376 4483 Pls
+5897 2956 Pls
+5862 4541 Pls
+6905 2704 Pls
+6226 4847 Pls
+6736 2898 Pls
+5842 4263 Pls
+3071 3806 Pls
+1704 2830 Pls
+4350 3395 Pls
+6705 2717 Pls
+6749 4070 Pls
+6400 2481 Pls
+6547 2721 Pls
+6385 1888 Pls
+6123 2113 Pls
+5486 3257 Pls
+5420 1293 Pls
+5138 2109 Pls
+5481 2059 Pls
+2774 2513 Pls
+5389 2718 Pls
+6744 4205 Pls
+5685 4680 Pls
+5489 2091 Pls
+5895 3730 Pls
+5210 2511 Pls
+5752 4005 Pls
+6745 4243 Pls
+6014 4496 Pls
+5630 3087 Pls
+6265 1350 Pls
+6177 3666 Pls
+6515 4669 Pls
+6566 4031 Pls
+2516 4473 Pls
+4367 2382 Pls
+6778 2180 Pls
+6586 3904 Pls
+1309 1821 Pls
+6494 3578 Pls
+2386 2749 Pls
+2044 3506 Pls
+4579 3482 Pls
+4687 4577 Pls
+5709 4615 Pls
+6655 2742 Pls
+4838 3154 Pls
+6089 4108 Pls
+4387 3549 Pls
+6618 3764 Pls
+4166 4698 Pls
+5389 1310 Pls
+5812 1020 Pls
+6315 4437 Pls
+2563 3179 Pls
+5976 4828 Pls
+6793 2224 Pls
+4247 3806 Pls
+3657 2412 Pls
+6143 3716 Pls
+5181 3106 Pls
+2539 2077 Pls
+4100 3966 Pls
+5339 2316 Pls
+3471 3254 Pls
+2128 3597 Pls
+3205 1534 Pls
+3017 3544 Pls
+5188 1981 Pls
+4226 3406 Pls
+5701 3309 Pls
+6851 4243 Pls
+5341 1096 Pls
+6163 2933 Pls
+3360 4629 Pls
+5817 4737 Pls
+4352 3367 Pls
+6939 2636 Pls
+6374 2884 Pls
+5900 4351 Pls
+6530 1625 Pls
+5017 4297 Pls
+4544 4340 Pls
+1274 2903 Pls
+6690 3245 Pls
+5642 1019 Pls
+5845 4273 Pls
+3058 3342 Pls
+2792 1532 Pls
+6678 3445 Pls
+6818 3978 Pls
+5132 699 Pls
+6000 4495 Pls
+4315 3671 Pls
+5811 1934 Pls
+5720 4259 Pls
+5681 2541 Pls
+5136 2867 Pls
+5483 3541 Pls
+4505 4143 Pls
+4068 3790 Pls
+5255 3379 Pls
+5879 4808 Pls
+5114 4081 Pls
+5656 2525 Pls
+4891 1254 Pls
+4366 4681 Pls
+3980 4015 Pls
+4332 4551 Pls
+6896 3805 Pls
+884 1114 Pls
+3046 3998 Pls
+4569 3459 Pls
+6466 4002 Pls
+4092 3991 Pls
+6754 3495 Pls
+6863 4018 Pls
+4423 3680 Pls
+4052 3491 Pls
+6624 2199 Pls
+3904 2006 Pls
+2643 4788 Pls
+3921 4546 Pls
+6843 1997 Pls
+6337 877 Pls
+6849 4063 Pls
+5686 4415 Pls
+6697 4448 Pls
+2448 4411 Pls
+6164 4346 Pls
+4832 4480 Pls
+6247 3653 Pls
+2602 1835 Pls
+6372 1919 Pls
+4135 3431 Pls
+3903 1171 Pls
+4999 1124 Pls
+3534 4598 Pls
+4836 4133 Pls
+5318 4498 Pls
+5622 1623 Pls
+4654 4527 Pls
+6312 4570 Pls
+6385 4414 Pls
+5966 4065 Pls
+5427 1206 Pls
+6469 4247 Pls
+5969 4485 Pls
+5036 2670 Pls
+5077 4469 Pls
+6427 4241 Pls
+6178 3893 Pls
+6729 3388 Pls
+3617 3304 Pls
+3232 1786 Pls
+5141 4559 Pls
+4811 3686 Pls
+6040 3871 Pls
+4051 2404 Pls
+3596 4653 Pls
+4054 2606 Pls
+1373 1096 Pls
+5955 4387 Pls
+2522 2603 Pls
+5374 3610 Pls
+6890 3362 Pls
+3865 4161 Pls
+2959 2046 Pls
+6835 3399 Pls
+3842 858 Pls
+951 2661 Pls
+1687 2139 Pls
+6917 2008 Pls
+4411 3495 Pls
+4408 4587 Pls
+6911 3894 Pls
+5082 4698 Pls
+6005 4150 Pls
+4756 4719 Pls
+2751 4608 Pls
+2154 3738 Pls
+4873 4187 Pls
+3115 4868 Pls
+6401 4798 Pls
+6737 2924 Pls
+6654 1504 Pls
+6574 2056 Pls
+6158 3835 Pls
+6720 4597 Pls
+2919 3638 Pls
+6688 790 Pls
+5697 2770 Pls
+6167 4869 Pls
+4524 2848 Pls
+1489 4667 Pls
+2533 1615 Pls
+4726 4007 Pls
+4947 4441 Pls
+6029 3407 Pls
+6311 3292 Pls
+2705 2897 Pls
+5975 4585 Pls
+4788 2414 Pls
+3867 2268 Pls
+6567 3273 Pls
+6320 4159 Pls
+5431 3707 Pls
+5691 1963 Pls
+5937 4598 Pls
+5272 4672 Pls
+3890 3799 Pls
+6475 2338 Pls
+4568 3005 Pls
+5576 4814 Pls
+5056 2406 Pls
+5169 4343 Pls
+5236 4577 Pls
+5438 4748 Pls
+6260 1484 Pls
+4825 2409 Pls
+5793 3410 Pls
+5221 4602 Pls
+6415 3206 Pls
+3792 3554 Pls
+6904 1201 Pls
+6812 4207 Pls
+4363 3625 Pls
+3397 3057 Pls
+3913 2353 Pls
+4789 1713 Pls
+6561 3602 Pls
+2478 1847 Pls
+3034 1305 Pls
+656 4281 Pls
+3391 3983 Pls
+5158 4249 Pls
+2643 4750 Pls
+6659 4863 Pls
+4216 4576 Pls
+6638 3956 Pls
+3332 2746 Pls
+6752 4848 Pls
+5595 4034 Pls
+6149 4814 Pls
+6676 3687 Pls
+5915 2683 Pls
+4326 2138 Pls
+6874 4396 Pls
+3336 3631 Pls
+745 2627 Pls
+1766 1020 Pls
+2204 2635 Pls
+3953 3373 Pls
+6946 3582 Pls
+6899 1187 Pls
+4046 4639 Pls
+5398 4171 Pls
+4896 4114 Pls
+5933 4756 Pls
+4207 3698 Pls
+4813 2559 Pls
+4845 3833 Pls
+6443 2985 Pls
+5911 3583 Pls
+6364 2654 Pls
+4290 3239 Pls
+6149 3065 Pls
+6801 3274 Pls
+1334 3457 Pls
+3812 3155 Pls
+5257 3424 Pls
+6760 3141 Pls
+5962 4548 Pls
+6906 3686 Pls
+4900 4820 Pls
+5754 4624 Pls
+5503 3128 Pls
+6323 1578 Pls
+6391 1826 Pls
+6063 1752 Pls
+5363 3412 Pls
+2860 1537 Pls
+3334 3705 Pls
+5232 1714 Pls
+6050 2233 Pls
+6792 3671 Pls
+642 4620 Pls
+6165 3803 Pls
+6080 3687 Pls
+2085 2715 Pls
+4793 3758 Pls
+4386 4770 Pls
+4894 3404 Pls
+6870 2186 Pls
+5289 3464 Pls
+2795 4861 Pls
+4409 4739 Pls
+4664 4291 Pls
+6397 3559 Pls
+3132 4613 Pls
+6593 3762 Pls
+4603 4813 Pls
+5251 3632 Pls
+4421 3847 Pls
+2553 3646 Pls
+5613 3213 Pls
+6497 4235 Pls
+5581 2954 Pls
+6399 4718 Pls
+6217 3938 Pls
+6132 4783 Pls
+6937 1765 Pls
+5121 2273 Pls
+6647 3122 Pls
+4955 2729 Pls
+5543 4123 Pls
+4740 1842 Pls
+5558 4629 Pls
+5437 4839 Pls
+6601 3526 Pls
+4841 4718 Pls
+4895 4150 Pls
+6272 4425 Pls
+2504 4666 Pls
+6114 3136 Pls
+2609 4826 Pls
+6823 4175 Pls
+2991 3547 Pls
+4605 3884 Pls
+4494 3233 Pls
+5629 4563 Pls
+3193 3786 Pls
+4043 3882 Pls
+2966 1539 Pls
+6140 4038 Pls
+5464 4566 Pls
+4470 2039 Pls
+4942 4118 Pls
+3774 4413 Pls
+2941 568 Pls
+6645 2763 Pls
+4280 3667 Pls
+2148 2254 Pls
+5488 3401 Pls
+6138 3914 Pls
+2199 2857 Pls
+6606 2649 Pls
+3716 3461 Pls
+6536 3308 Pls
+6179 4331 Pls
+3130 2543 Pls
+4638 3716 Pls
+6556 3696 Pls
+6824 3245 Pls
+2329 4638 Pls
+5178 2043 Pls
+4697 3753 Pls
+6228 4742 Pls
+2163 4193 Pls
+2152 2203 Pls
+3307 3894 Pls
+5550 2743 Pls
+1720 3941 Pls
+6037 2593 Pls
+4454 2562 Pls
+5242 4506 Pls
+3942 2500 Pls
+3491 3721 Pls
+2849 2376 Pls
+2153 1382 Pls
+3526 4172 Pls
+3410 4327 Pls
+5461 4722 Pls
+3024 1102 Pls
+3211 3229 Pls
+4501 2098 Pls
+4721 4203 Pls
+4002 4030 Pls
+4598 1411 Pls
+3403 1788 Pls
+5370 2195 Pls
+2920 3530 Pls
+2763 4312 Pls
+6364 2963 Pls
+5350 1614 Pls
+1947 3701 Pls
+4073 3328 Pls
+4310 4110 Pls
+3726 3363 Pls
+5641 1818 Pls
+4174 3244 Pls
+6531 1764 Pls
+6381 3580 Pls
+5318 4570 Pls
+3854 4300 Pls
+5276 4042 Pls
+5016 4458 Pls
+6598 3640 Pls
+6876 1380 Pls
+5867 3872 Pls
+6087 3551 Pls
+5980 4003 Pls
+6335 3336 Pls
+3354 1348 Pls
+6681 2754 Pls
+6260 3719 Pls
+6291 4829 Pls
+2229 4726 Pls
+4938 2984 Pls
+3379 4168 Pls
+941 4379 Pls
+555 1086 Pls
+6835 4188 Pls
+6321 4292 Pls
+3552 4229 Pls
+6216 4400 Pls
+6828 324 Pls
+5251 3537 Pls
+6734 3510 Pls
+6635 2073 Pls
+4260 2578 Pls
+6864 3332 Pls
+4001 4511 Pls
+5895 3073 Pls
+5118 2452 Pls
+3538 4170 Pls
+5014 4117 Pls
+6823 3552 Pls
+3430 4215 Pls
+5740 3691 Pls
+4249 3226 Pls
+5467 517 Pls
+5529 4127 Pls
+6107 4729 Pls
+6328 2089 Pls
+6896 4282 Pls
+3506 3754 Pls
+6637 4110 Pls
+4408 4261 Pls
+4860 2532 Pls
+5069 3181 Pls
+6869 3327 Pls
+5238 4085 Pls
+6593 4811 Pls
+4616 3790 Pls
+6623 3378 Pls
+6819 2863 Pls
+3847 4213 Pls
+6582 3773 Pls
+5621 3489 Pls
+3761 4680 Pls
+3328 2270 Pls
+6752 2669 Pls
+5464 1575 Pls
+4062 4565 Pls
+4725 4450 Pls
+5127 3198 Pls
+3440 3945 Pls
+6917 1951 Pls
+6514 3404 Pls
+4780 3610 Pls
+5716 3393 Pls
+5467 4357 Pls
+6609 1878 Pls
+5369 4640 Pls
+4085 3952 Pls
+6099 4502 Pls
+6314 4226 Pls
+5577 3015 Pls
+4936 3919 Pls
+6245 3824 Pls
+3481 3558 Pls
+771 3677 Pls
+3991 3600 Pls
+2569 4648 Pls
+1515 3584 Pls
+6798 3705 Pls
+5603 3823 Pls
+3426 4658 Pls
+6695 3498 Pls
+2108 4344 Pls
+5027 4286 Pls
+4911 4682 Pls
+6873 3644 Pls
+5877 2813 Pls
+5132 2871 Pls
+2945 3076 Pls
+4574 3769 Pls
+3988 2982 Pls
+6008 4330 Pls
+6772 4625 Pls
+2611 4276 Pls
+6461 1749 Pls
+5053 4415 Pls
+6589 3072 Pls
+1823 3127 Pls
+4170 3499 Pls
+5740 1341 Pls
+3793 3132 Pls
+6093 4050 Pls
+6810 4194 Pls
+3270 3904 Pls
+5515 4302 Pls
+6498 4287 Pls
+1024 1027 Pls
+6795 3069 Pls
+3861 3177 Pls
+2062 4070 Pls
+4815 4009 Pls
+6723 1994 Pls
+5748 3482 Pls
+2596 4225 Pls
+2845 3657 Pls
+6600 2110 Pls
+6281 3997 Pls
+6160 4252 Pls
+5670 3937 Pls
+6499 3810 Pls
+5540 2733 Pls
+2906 4784 Pls
+3442 4558 Pls
+866 3381 Pls
+4931 4259 Pls
+3460 2494 Pls
+5231 3590 Pls
+5556 3472 Pls
+6898 565 Pls
+773 4236 Pls
+6435 3912 Pls
+6577 4577 Pls
+3889 1881 Pls
+5360 3969 Pls
+6365 2615 Pls
+4753 4296 Pls
+6577 4093 Pls
+5594 3592 Pls
+5053 4192 Pls
+5177 2987 Pls
+4993 4259 Pls
+3470 4414 Pls
+6308 1725 Pls
+5826 2599 Pls
+3132 4372 Pls
+5566 2233 Pls
+6037 4824 Pls
+6247 2744 Pls
+3928 2717 Pls
+6423 4282 Pls
+5275 2352 Pls
+3007 3671 Pls
+4912 1507 Pls
+6468 4760 Pls
+6495 2248 Pls
+3294 1132 Pls
+3795 3769 Pls
+5532 1954 Pls
+3269 2832 Pls
+5851 2678 Pls
+5342 4391 Pls
+4362 2649 Pls
+4983 3816 Pls
+4237 530 Pls
+1174 1575 Pls
+5664 4724 Pls
+5760 3778 Pls
+4910 819 Pls
+6820 4172 Pls
+5422 2762 Pls
+4839 1342 Pls
+6597 3907 Pls
+4212 4272 Pls
+6471 3342 Pls
+5819 2874 Pls
+596 3919 Pls
+4852 4310 Pls
+4921 3642 Pls
+4321 4768 Pls
+6213 1799 Pls
+5103 4054 Pls
+4509 3367 Pls
+2305 4521 Pls
+2017 2305 Pls
+5375 3537 Pls
+5086 3059 Pls
+3154 4157 Pls
+6906 4306 Pls
+5893 3313 Pls
+4803 2131 Pls
+4620 4229 Pls
+3417 3512 Pls
+4968 4866 Pls
+1903 2021 Pls
+1187 4197 Pls
+4756 4227 Pls
+6020 3325 Pls
+6480 4269 Pls
+696 4654 Pls
+5534 2518 Pls
+6910 3990 Pls
+6810 3944 Pls
+5365 3031 Pls
+3195 2789 Pls
+2207 3010 Pls
+4678 3294 Pls
+2432 3695 Pls
+3211 3400 Pls
+5386 4190 Pls
+6617 2716 Pls
+2848 3950 Pls
+2192 4244 Pls
+5324 4655 Pls
+1169 3564 Pls
+6362 4020 Pls
+6537 3489 Pls
+4321 3217 Pls
+5844 3167 Pls
+2604 4856 Pls
+6193 3862 Pls
+5347 1935 Pls
+2629 3581 Pls
+4980 4847 Pls
+6253 2917 Pls
+3010 4708 Pls
+6233 4693 Pls
+4896 3509 Pls
+6842 4560 Pls
+5233 2245 Pls
+5716 3190 Pls
+6547 3975 Pls
+5382 4473 Pls
+4960 2791 Pls
+3920 1221 Pls
+2227 4342 Pls
+1987 4223 Pls
+3474 4866 Pls
+6840 4013 Pls
+3005 2913 Pls
+3698 3238 Pls
+2791 3178 Pls
+4197 3888 Pls
+3335 3829 Pls
+2935 4181 Pls
+2921 4101 Pls
+4173 3533 Pls
+5371 3779 Pls
+5790 3513 Pls
+5384 3224 Pls
+4917 4656 Pls
+5209 4650 Pls
+6338 2738 Pls
+5686 2242 Pls
+6547 2190 Pls
+3616 4142 Pls
+6514 3530 Pls
+3508 3669 Pls
+5652 3367 Pls
+6331 4300 Pls
+5585 1897 Pls
+3396 1870 Pls
+6121 4563 Pls
+3522 4072 Pls
+6452 4257 Pls
+4435 3008 Pls
+1621 3223 Pls
+4821 4014 Pls
+3314 4832 Pls
+5264 601 Pls
+6577 2403 Pls
+6567 4857 Pls
+1117 2369 Pls
+6480 4402 Pls
+2915 4375 Pls
+4549 4863 Pls
+5975 4225 Pls
+5630 2364 Pls
+5403 3908 Pls
+4513 3017 Pls
+3656 1898 Pls
+6715 1756 Pls
+1683 1319 Pls
+3984 2638 Pls
+4832 628 Pls
+5946 4191 Pls
+3876 2052 Pls
+6634 4812 Pls
+1903 2193 Pls
+557 3822 Pls
+3150 4767 Pls
+5495 4572 Pls
+3685 1786 Pls
+4841 4430 Pls
+4650 405 Pls
+6549 3802 Pls
+3523 3544 Pls
+6554 3605 Pls
+5012 3647 Pls
+2177 1668 Pls
+4767 4009 Pls
+5296 3134 Pls
+5495 3141 Pls
+6180 4076 Pls
+5959 3109 Pls
+787 3089 Pls
+666 4415 Pls
+4415 658 Pls
+4168 3026 Pls
+1264 3037 Pls
+3756 1279 Pls
+4705 4714 Pls
+5001 4602 Pls
+2486 3028 Pls
+2546 2596 Pls
+2141 4104 Pls
+1245 2103 Pls
+5777 1910 Pls
+6293 4177 Pls
+6542 4099 Pls
+5139 3922 Pls
+6339 4264 Pls
+6069 953 Pls
+4076 4504 Pls
+2895 4046 Pls
+6668 4855 Pls
+5957 314 Pls
+4153 4758 Pls
+6873 2929 Pls
+6313 2830 Pls
+988 3462 Pls
+5779 2602 Pls
+1869 4096 Pls
+5958 790 Pls
+6484 4309 Pls
+1614 2868 Pls
+5515 2913 Pls
+6114 1314 Pls
+6599 4619 Pls
+3833 3263 Pls
+6912 4505 Pls
+6918 4739 Pls
+6347 2244 Pls
+6380 2057 Pls
+5766 3961 Pls
+2999 4220 Pls
+5883 3629 Pls
+5752 4290 Pls
+4293 4193 Pls
+6093 3688 Pls
+5725 1269 Pls
+4000 2913 Pls
+5209 4222 Pls
+3273 3104 Pls
+5880 4541 Pls
+6850 2370 Pls
+5181 4648 Pls
+4530 3571 Pls
+6108 4514 Pls
+6198 2975 Pls
+6477 4588 Pls
+5623 3314 Pls
+6634 2466 Pls
+6216 4858 Pls
+6909 2907 Pls
+6123 1438 Pls
+6304 4314 Pls
+4313 2665 Pls
+4984 4056 Pls
+2654 2462 Pls
+4446 502 Pls
+5978 4251 Pls
+4107 4290 Pls
+6463 3267 Pls
+4947 3131 Pls
+6612 2008 Pls
+4123 4376 Pls
+6206 2733 Pls
+6504 4528 Pls
+5256 2224 Pls
+5656 1915 Pls
+5938 3969 Pls
+5267 3068 Pls
+6458 817 Pls
+5209 3814 Pls
+5307 3979 Pls
+4605 1400 Pls
+1861 4815 Pls
+6820 4012 Pls
+6658 4271 Pls
+5959 4840 Pls
+5585 474 Pls
+3729 3399 Pls
+5514 2397 Pls
+6817 1684 Pls
+5229 809 Pls
+4439 4173 Pls
+4998 3701 Pls
+4405 4797 Pls
+6272 2347 Pls
+4650 4791 Pls
+5076 1976 Pls
+5492 3779 Pls
+2559 1193 Pls
+6095 2624 Pls
+5695 4550 Pls
+3391 2998 Pls
+5477 4521 Pls
+5686 3697 Pls
+5670 4073 Pls
+4605 4556 Pls
+6192 549 Pls
+4236 4107 Pls
+6265 3138 Pls
+6041 4343 Pls
+5803 1148 Pls
+6513 1902 Pls
+2209 3796 Pls
+1128 3615 Pls
+6177 3361 Pls
+3732 4030 Pls
+2373 2392 Pls
+5878 4573 Pls
+5351 4025 Pls
+5020 4681 Pls
+6481 4479 Pls
+6730 1681 Pls
+5442 3622 Pls
+6051 3862 Pls
+6717 4204 Pls
+3914 4849 Pls
+6317 3324 Pls
+4039 4594 Pls
+4382 828 Pls
+5885 3822 Pls
+3714 2934 Pls
+5032 4536 Pls
+2802 3848 Pls
+4990 2096 Pls
+3400 4520 Pls
+5370 918 Pls
+6615 3731 Pls
+3924 4752 Pls
+6670 2867 Pls
+4500 4478 Pls
+4310 2501 Pls
+1648 3381 Pls
+3463 3979 Pls
+6629 4258 Pls
+5754 3214 Pls
+5715 817 Pls
+6686 2858 Pls
+4551 3807 Pls
+4669 3240 Pls
+3928 4004 Pls
+6543 3793 Pls
+6575 3524 Pls
+6467 2644 Pls
+5495 4348 Pls
+4232 2653 Pls
+4986 4011 Pls
+664 2493 Pls
+5884 3536 Pls
+3723 4519 Pls
+6389 2164 Pls
+5004 2131 Pls
+5830 3205 Pls
+6024 3337 Pls
+5152 4703 Pls
+5496 4788 Pls
+5547 1001 Pls
+5934 3911 Pls
+6823 4093 Pls
+4145 3876 Pls
+4664 4722 Pls
+677 3574 Pls
+5981 4201 Pls
+4604 1072 Pls
+2043 3402 Pls
+3859 4232 Pls
+4729 3133 Pls
+5440 3449 Pls
+2877 4311 Pls
+3672 4612 Pls
+2537 4416 Pls
+6917 3924 Pls
+3595 3840 Pls
+6762 4161 Pls
+6881 4618 Pls
+5695 1568 Pls
+1473 4834 Pls
+5244 4224 Pls
+6183 4845 Pls
+5207 3789 Pls
+5925 3805 Pls
+5821 3884 Pls
+6044 4795 Pls
+5866 1512 Pls
+3075 3466 Pls
+5757 3369 Pls
+3655 3103 Pls
+4186 3933 Pls
+6617 4059 Pls
+6703 2288 Pls
+3573 3467 Pls
+3826 3861 Pls
+6360 3266 Pls
+6186 3311 Pls
+4965 3146 Pls
+5757 3268 Pls
+6336 2152 Pls
+4628 3730 Pls
+1699 1691 Pls
+1955 4559 Pls
+6786 2886 Pls
+6845 4541 Pls
+6741 4113 Pls
+4215 4187 Pls
+6693 4405 Pls
+831 3144 Pls
+4861 2134 Pls
+4596 4550 Pls
+5681 3432 Pls
+3780 4516 Pls
+3974 4704 Pls
+4191 4369 Pls
+5087 4236 Pls
+6595 2822 Pls
+4851 2268 Pls
+5450 2826 Pls
+4713 3495 Pls
+3828 1931 Pls
+5001 4525 Pls
+5434 1355 Pls
+4199 2948 Pls
+4029 2486 Pls
+6886 4691 Pls
+6435 3656 Pls
+3521 1667 Pls
+4850 3891 Pls
+3732 4204 Pls
+5205 4598 Pls
+3740 2278 Pls
+6098 3142 Pls
+6142 2874 Pls
+5155 4102 Pls
+981 4055 Pls
+5316 3204 Pls
+5042 2443 Pls
+5819 3111 Pls
+4269 3621 Pls
+5007 3815 Pls
+2581 2636 Pls
+6526 3741 Pls
+4880 3497 Pls
+4070 2691 Pls
+6441 2937 Pls
+6282 3601 Pls
+5070 3359 Pls
+4982 4734 Pls
+5260 3896 Pls
+5042 990 Pls
+3558 4479 Pls
+6570 4680 Pls
+5281 4605 Pls
+4891 2538 Pls
+2218 3669 Pls
+4990 4420 Pls
+6014 4633 Pls
+6919 2584 Pls
+2815 2546 Pls
+4279 4760 Pls
+2211 4425 Pls
+5423 4444 Pls
+6579 4738 Pls
+% End plot #1
+1.000 UL
+LTb
+546 4871 N
+546 280 L
+6401 0 V
+0 4591 V
+-6401 0 V
+Z stroke
+1.000 UP
+1.000 UL
+LTb
+stroke
+grestore
+end
+showpage
+%%Trailer
+%%DocumentFonts: Helvetica
