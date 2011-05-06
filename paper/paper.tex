@@ -132,7 +132,7 @@ One potential drawback of this method is that it needs to find $\ell \cap \mathc
 
 \section{Implementation Details}
 
-To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run. The five methods were implemented in C++ and tested on several test regions of various dimensions: a cube, a sphere, and a regular simplex, all definied by separation oracles. Real numbers were represented by 64-bit double precision, although random numbers were generated with 31 bits.
+To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run. The five methods were implemented in C++ and tested on several test regions of various dimensions: a cube, a sphere, and a regular simplex, all definied by separation oracles. Real numbers were represented by 64-bit double precision, although random numbers were generated with 31 bits. We chose not to implement higher precision floating point numbers because our interest is in the scaling with dimension, rather than with the sample's requested precision.
 
 \subsection{The Regions (test cases)}
 
@@ -167,11 +167,25 @@ Finally, note that when we say that we ran an adaptive method for $m$ iterations
 
 \section{Results}
 
+In order to analyze the results, we plotted the first two coordinates of the samples from each of the test cases. The most interesting cases were the 10 dimensional cube and the 100 dimensional sphere. In the lower dimensional cases, all of the methods appear to have mixed in the time that we ran them, and in the 100 dimensional cube none of the methods effectively escaped the corner.
+
+Figure \ref{ballwalking} compares the standard and adaptive ball walking methods when starting from a corner. We can see that the standard method is still clusted around the corner where it started, while the adaptive method has much more effectively escaped and approximated the uniform distribution.
+Figure \ref{gaussian} shows the corresponding runs of the Gaussian walking methods in the same case. Both methods show signs that they have effectively mixed in the first 5000 iterations.
+
+Figure \ref{gaussian_short} shows the results of running the two Gaussian walking methods for only 2000 iterations. Here we have a surprising result -- while the standard Gaussian walking method is only moderately clustered around the starting corner, the adaptive method is extremely clustered. This indicates that using an adaptive method in a corner may be a bad idea, as it may shrink the step size too far while it is still stuck.
+
+Figure \ref{big_cube} shows the results of running the two ball walking methods and the Gaussian walking method for 5000 iterations in a 100 dimensional cube. This case clearly shows the issue of being unable to reach the far parts of the region in a reasonable amount of time. Even though most of the transitions will be accepted, we can see that the standard ball walking method is highly clustered around the center. The adaptive ball walking method does a slightly better job of spreading out, and the Gaussian walking method has very effectively reached all areas of the cube.
+
+We then ran the hit-and-run method through these two cases and found that it performed extremely well in both. Figure \ref{hitandrun} shows the results. Both starting from a corner of a 10 dimensional cube and starting from the center of a 100 dimensional cube lead to rapid mixing in the hit-and-run method.
+
+Finally, a bad start in the 100 dimensional sphere also gives interesting results for these five methods. We started the sampling methods with a point near the boundary, so the theoretical cost of the bad start is no longer exponential, as nearly half of the neighborhood lies within the admissible region. However, the ball-walking method still can be seen to not escape the boundary effectively, and using an adaptive method does not help. The Gaussian walking method works much better, and the distribution appears to be symmetric in the first coordinate, which indicates that the influence of the starting point has been eliminated. Interestingly, the adaptive Gaussian walking method is still heavily biased toward positive values of the first coordinate, while the nonadaptive Gaussian walking method is not. Again, the hit-and-run method is well mixed in just 1200 iterations, compared to the 5000 iterations for the other methods.
+
 \begin{figure}
 \centering
 \subfloat[Standard]{\epsfig{file=images/ballwalk_5000_cube10_cold,width=8cm}}
 \subfloat[Adaptive]{\epsfig{file=images/ballwalk_adaptive_5000_cube10_cold,width=8cm}}
 \caption{5000 iteration ball walking methods on the 10 dimensional cube with a bad start}
+\label{ballwalking}
 \end{figure}
 
 \begin{figure}
@@ -179,6 +193,7 @@ Finally, note that when we say that we ran an adaptive method for $m$ iterations
 \subfloat[Standard]{\epsfig{file=images/gaussian_5000_cube10_cold,width=8cm}}
 \subfloat[Adaptive]{\epsfig{file=images/gaussian_adaptive_5000_cube10_cold,width=8cm}}
 \caption{5000 iteration Gaussian walking methods on the 10 dimensional cube with a bad start}
+\label{gaussian}
 \end{figure}
 
 \begin{figure}
@@ -186,6 +201,7 @@ Finally, note that when we say that we ran an adaptive method for $m$ iterations
 \subfloat[Standard]{\epsfig{file=images/gaussian_2000_cube10_cold,width=8cm}}
 \subfloat[Adaptive]{\epsfig{file=images/gaussian_adaptive_2000_cube10_cold,width=8cm}}
 \caption{2000 iteration Gaussian walking methods on the 10 dimensional cube with a bad start}
+\label{gaussian_short}
 \end{figure}
 
 \begin{figure}
@@ -194,6 +210,7 @@ Finally, note that when we say that we ran an adaptive method for $m$ iterations
 \subfloat[Adaptive Ball-Walking]{\epsfig{file=images/ballwalk_adaptive_5000_cube100_warm,width=5.4cm}}
 \subfloat[Standard Gaussian-Walking]{\epsfig{file=images/gaussian_5000_cube100_warm,width=5.4cm}}
 \caption{5000 iteration Metropolis methods on the 100 dimensional cube with a good start}
+\label{big_cube}
 \end{figure}
 
 \begin{figure}
@@ -201,6 +218,7 @@ Finally, note that when we say that we ran an adaptive method for $m$ iterations
 \subfloat[10 dimensional cube, bad start]{\epsfig{file=images/hitandrun_1200_cube10_cold,width=8cm}}
 \subfloat[100 dimensional cube, good start]{\epsfig{file=images/hitandrun_1200_cube100_warm,width=8cm}}
 \caption{1200 iteration hit-and-run method on the 10 dimensional and 100 dimensional cubes}
+\label{hitandrun}
 \end{figure}
 
 \begin{figure}
@@ -213,6 +231,7 @@ Finally, note that when we say that we ran an adaptive method for $m$ iterations
 
 \subfloat[1200 Iteration Hit and Run]{\epsfig{file=images/hitandrun_1200_sphere100_cold,width=8cm}}
 \caption{Sampling methods on the 100 dimensional sphere with a bad start}
+\label{sphere}
 \end{figure}
 
 \section{Conclusion}
@@ -225,7 +244,7 @@ These results indicate that, in practice, the hit-and-run method is better than 
 
 \pagebreak
 
-\begin{thebibliography}{99}
+\begin{thebibliography}{9}
 
 \bibitem{Dabbene} Dabbene, F., ``A randomized cutting plane scheme for convex optimization,'' Computer-Aided Control Systems, 2008. CACSD 2008. IEEE International Conference on , vol., no., pp.120-125, 3-5 Sept. 2008.
 
