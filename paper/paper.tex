@@ -65,6 +65,9 @@ We will let $S$ be the set of all states of the chain and $P(x,y)$ be the value 
 \end{align*}
 where here we have used the fact that $\mu(x) = \mu(y)$, $P(x,y) = P(y,x)$, and that we can interchange the order of integration by Fubini's theorem because the double integral is a probability, and therefore finite and the integrand is always positive. However, we can see that this last quantity is the probability of starting at a point in $A$ and moving to a point in $S$. Since we will always move to a point in $S$, that quantity is just the probability that we start in $A$, which is simply $\int_A \mu(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$, as desired.
 \end{proof}
+\begin{remark} 
+\emph{This is a continuous analog of the following fact: given an undirected $d$-regular graph $G$, consider a Markov chain which, from any vertex, jumps to each of its neighbors with probability $1/d$. Then the stationary distribution on this Markov chain is the stationary distribution.}
+\end{remark}
 
 This theorem allows us to conclude that both Metropolis methods we are considering, the ball-walking and the Gaussian-walking, have a uniform stationary distribution. First consider the ball walking method. Let $V$ be the volume of the ball that we sample from, and let $r$ be its radius. Then for any points $x,y\in\mathcal{R}$, with $x\ne y$, we have $P_\text{ball}(x,y) = P_\text{ball}(y,x) = \frac{1}{V}$ if $||x-y||_2 \le r$ and $P_\text{ball}(x,y) = P_\text{ball}(y,x) = 0$ otherwise.
 
