@@ -82,10 +82,10 @@ First, consider the ball walking method. Let $V$ be the volume of the ball that 
 
 Now consider the Gaussian-walking transition. We simply get $P_\text{Gaussian}(x,y) = P_\text{Gaussian}(y,x) = e^{-||x-y||_2^2 / 2\sigma^2}$ for any two points $x\ne y$, where $\sigma$ is the standard deviation of any coordinate.
 
-Thus, by \ref{symmetric}, both ball-walking and Gaussian-walking have a stationary uniform distribution.
+Thus, the transition functions are symmetric, so by \ref{symmetric}, both ball-walking and Gaussian-walking have a stationary uniform distribution.
 \end{proof}
 
-It is also shown in \cite{Smith} that the distributions from a Markov chain with a symmetric transition function eventually \emph{converge} to this stationary uniform distribution, which shows that these algorithms for sampling uniformly will work, given enough time. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
+It is also shown in \cite{Smith} that the distributions from a Markov chain with a symmetric transition function eventually \emph{converge} to this stationary uniform distribution, which shows that these algorithms for sampling uniformly will work, given enough time. The \emph{mixing time} of an algorithm is the number of iterations required for the distribution to converge to the uniform distribution within some desired precision. Ideally, we want the mixing time to be small. However, in the next section, we will see that this can take a very long time to mix, and we modify the algorithm in an attempt to fix this problem.
 
 %we can also show that these algorithms may take exponentially long to converge. Suppose $\mathcal{R}$ is an $n$-dimensional cube $[-1,1]^n$, and suppose $x_0 = (1 - \epsilon, 1-\epsilon, ..., 1-\epsilon)$ for some small $\epsilon$. If we sample a point randomly from our transition distribution, then the probability that we choose a point in $\mathcal{R}$ is exponentially small in $n$. Thus, we end up ``stuck" at this point for a very long time. We attempt to fix this problem in the next section.
 
@@ -120,7 +120,7 @@ Intuitively, we see that this ought to avoid the issue with the Metropolis metho
 
 These ideas are made more precise with the following bound, from \cite{Vempala}:
 
-\begin{theorem}[{\bf Hit-and-run bound}] \label{hitandrunbound} Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
+\begin{theorem}[{\bf Hit-and-run mixing bound}] \label{hitandrunbound} Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
 \begin{center}$m = \displaystyle 10^{11}\frac{n^3 R^2}{r^2}\ln\frac{R}{d\epsilon}$\end{center}
 steps, the total variation distance of the chain is within $\epsilon$ of the uniform distribution. That is, if $\mu$ is the uniform distribution and $P$ is the the distribution of the chain after $m$ steps, then
 \begin{center}$\displaystyle \sup_{r \in \mathcal{R}} |\mu(r) - P(r)| \le \epsilon$.\end{center}
