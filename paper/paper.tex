@@ -50,22 +50,27 @@ The aim of this paper is to compare the performance in practice of these methods
 
 In order to use the Metropolis method, we need to be sure that it will somehow approximate the uniform distribution. We can do this by using the fact that our transition functions are \emph{symmetric}.
 
-The Metropolis methods both have the same basic structure. A transition in the Markov chain works simply by choosing another point from some distribution centered at our current location; if that point is in the convex region $\mathcal{R}$, then we move to that point; otherwise, we stay. The only difference between the two methods is the distribution we use. Ball-walking chooses a point randomly from a ball, and Metropolis chooses each coordinate from a Gaussian.
+The Metropolis methods both have the same basic structure. A transition in the Markov chain works simply by choosing another point from some distribution centered at our current location; if that point is in the convex region $\mathcal{R}$, then we move to that point; otherwise, we stay. The only difference between the two methods is the distribution we use. Ball-walking chooses a point randomly from a ball, and Gaussian-walking chooses each coordinate from a Gaussian.
 
-First, we want to show that these two transition functions both have the uniform distribution as a stationary distribution. To show this, we use the following fact, from \cite{Smith}.
+These Metropolis methods will sample from $\mathcal{R}$ with some distribution; we want to be sure that this is actually the uniform distribution. In order to this, we first want to show that the uniform distribution is a \emph{stationary distribution} of the transition function. We say that a distribution $\rho$ on $\mathcal{R}$ is stationary if when we choose a point from $\mathcal{R}$ according to $\rho$ and then perform a transition, we get a point that is also distributed according to $\rho$.
+
+Now, we want to show that these two transition functions both have the uniform distribution as a stationary distribution. To show this, we use the following fact, from \cite{Smith}. Let $P(x,y)$ be the value of the transition distribution associated with moving from $x$ to $y$. We say that $P$ is a \emph{symmetric} if $P(x,y) = P(y,x)$ for all $x,y$. Then we have:
 
 \begin{theorem}
 Any Markov chain whose state space is an open subset of $\mathbb{R}^n$ with a symmetric transition distribution has the uniform distribution as a stationary distribution.
 \label{symmetric}
 \end{theorem}
 \begin{proof}
-We will let $S$ be the set of all states of the chain and $P(x,y)$ be the value of the transition distribution associated with moving from $x$ to $y$. Furthermore, let $\mu$ be the uniform distribution on $S$, i.e. $\mu(x) = \frac{1}{\text{Vol}(S)}$. Then we want to show that for every subset $A \subseteq S$, $\int_A (\mu P)(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$. To do this, notice the following:
+We will let $S$ be the set of all states of the chain. Furthermore, let $\mu$ be the uniform distribution on $S$, i.e. $\mu(x) = \frac{1}{\text{Vol}(S)}$. Then we want to show that for every subset $A \subseteq S$, $\int_A (\mu P)(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$. To do this, notice the following:
 \begin{align*}
 \int_A (\mu P)(y)\, dy &= \int_A \int_S \mu(x)P(x,y)\, dx\, dy \\
 &= \int_S \int_A \mu(y)P(y,x)\, dy\, dx
 \end{align*}
 where here we have used the fact that $\mu(x) = \mu(y)$, $P(x,y) = P(y,x)$, and that we can interchange the order of integration by Fubini's theorem because the double integral is a probability, and therefore finite and the integrand is always positive. However, we can see that this last quantity is the probability of starting at a point in $A$ and moving to a point in $S$. Since we will always move to a point in $S$, that quantity is just the probability that we start in $A$, which is simply $\int_A \mu(y)\, dy = \frac{\text{Vol}(A)}{\text{Vol}(S)}$, as desired.
 \end{proof}
+\begin{remark} 
+\emph{This is a continuous analog of the following fact: given an undirected $d$-regular graph $G$, consider a Markov chain which, from any vertex, jumps to each of its neighbors with probability $1/d$. Then the stationary distribution on this Markov chain is the stationary distribution.}
+\end{remark}
 
 This theorem allows us to conclude that both Metropolis methods we are considering, the ball-walking and the Gaussian-walking, have a uniform stationary distribution. First consider the ball walking method. Let $V$ be the volume of the ball that we sample from, and let $r$ be its radius. Then for any points $x,y\in\mathcal{R}$, with $x\ne y$, we have $P_\text{ball}(x,y) = P_\text{ball}(y,x) = \frac{1}{V}$ if $||x-y||_2 \le r$ and $P_\text{ball}(x,y) = P_\text{ball}(y,x) = 0$ otherwise.
 
@@ -83,11 +88,11 @@ In this case shrinking the step size would clearly help, but it is not difficult
 
 The other contribution to the length of time required for Metropolis methods is that if the step size is too small, it takes a long time to walk from one point in the admissible region to another. As it is certainly not possible for the Markov chain to mix before it is able to reach any other given point, a small step size causes the state space to have a large diameter, and thus a long mixing time.
 
-In order to find a good balance between the two main contributors to runtime stated above, we introduce an adaptive walk, which we run for some time before running the standard ball walking or Metropolis method. This adaptive walk uses the success or failure of a step to guess whether its current step size is too small or too large, and then compensates by modifying it by a constant factor. 
+In order to find a good balance between the two main contributors to runtime stated above, we introduce an adaptive walk, which we run for some time before running the standard ball walking or Metropolis method. This adaptive walk uses the success or failure of a step to guess whether its current step size is too small or too large, and then compensates by modifying it by a constant factor.
 
-In the case of ball walking, our step size is the radius of the ball around the current point from which we draw the next point, and in the Gaussian walking method the step size corresponds to the standard deviation of the normal distributions used. However, it is not clear that this procedure has the uniform distribution as its stationary distribution, so we follow this adaptive procedure with the nonadaptive version, using the step size left by the adaptive method.
+In the case of ball walking, our step size is the radius of the ball around the current point from which we draw the next point, and in the Gaussian walking method the step size corresponds to the standard deviation of the normal distributions used. However, it is not clear that this procedure has the uniform distribution as its stationary distribution, so after running this adaptive procedure for a while, we finish by running the nonadaptive version, using the step size left by the adaptive method.
 
-Since the nonadaptive methods converge to the stationary distribution from any starting distribution, this yields a method that converges to the stationary distribution, but also attempts to find a good step size in order to converge more rapidly.
+Since the nonadaptive methods converge to the stationary distribution from any starting distribution, this yields a method that converges to the stationary distribution, but also attempts to both find a good step size in order to converge more rapidly and move to a better starting point (i.e. not near any corners).
 
 \section{Hit and Run}
 
@@ -108,8 +113,8 @@ These ideas are made more precise with the following bound, from \cite{Vempala}:
 
 \begin{theorem}[{\bf Hit-and-run bound}] Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
 \begin{center}$m = \displaystyle 10^{11}\frac{n^3 R^2}{r^2}\ln\frac{R}{d\epsilon}$\end{center}
-steps, the total variation distance of the chain is within $\epsilon$ of the uniform distribution. That is, if $\mu$ is the uniform distribution and $\sigma$ is the the distribution of the chain after $m$ steps, then
-\begin{center}$\displaystyle \sup_{r \in \mathcal{R}} |\mu(r) - \sigma(r)| \le \epsilon$.\end{center}
+steps, the total variation distance of the chain is within $\epsilon$ of the uniform distribution. That is, if $\mu$ is the uniform distribution and $P$ is the the distribution of the chain after $m$ steps, then
+\begin{center}$\displaystyle \sup_{r \in \mathcal{R}} |\mu(r) - P(r)| \le \epsilon$.\end{center}
 \end{theorem}
 
 This bound is polynomial in $n$, so in theory, it is better than the Metropolis methods. The constant, however, is very larger, and so our hope is that, when tested in practice, the hit-and-run method will mix to the uniform distribution even faster than in the time given by this bound.
@@ -120,48 +125,34 @@ One potential drawback of this method is that it needs to find $\ell \cap \mathc
 
 To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run. The five methods were implemented in C++ and tested on several test regions of various dimensions: a cube, a sphere, and a regular simplex, all definied by separation oracles. Real numbers were represented by 64-bit double precision, although random numbers were generated with 31 bits.
 
+\subsection{The regions}
+
+We implemented separation oracles for a cube, a sphere, and a simplex for dimensions and tested the algorithms for dimensions $n\in\{2,3,4,7,10,100\}$.
+\begin{itemize}
+\item \emph{The cube.} This is simply the region $(-1,1)^n$.
+\item \emph{The sphere.} This is simply the region $\{(x_1,...,x_n)\in\mathbb{R}^n : x_1^2 + x_2^2 + \cdots + x_n^2 < 1\}$.
+\item \emph{The simplex.} We defined this as the region inside the convex hull of the points $e_1, ..., e_n$ (defined by $e_{i,j} = 1$ if $i=j$ and $e_{i,j} = 0$ otherwise) and $f = (c,c,...,c)$ where\linebreak $c = (1 - \sqrt{n + 1}) / n$. We can compute that any two of these $n+1$ points are of Euclidean distance $\sqrt{2}$ from each other. To test if a point $p$ lies inside the simplex, we draw a line through $f$ and $p$, and intersect it with the plane $x_1 + x_2 + \cdots + x_n = 1$, say this intersection is $q$. First, we want to check that $p$ lies between $f$ and $q$. If so, then we just need to check that $q$ lies in the convex hull of $e_1,e_2,...,e_n$, but this is equivalent to checking that each coordinate of $q$ is nonnegative.
+\end{itemize}
+
+We want to investigate how well the algorithms work in different starting places. We use the origin $(0,0,...,0)$ as a ``good" start. We also run tests where the starting place is ``bad", that is, near the boundary of the region. For the sphere and the simplex, we use the point $(1 - 10^{-4}, 0, ..., 0)$, and for the cube we use $(1 - 10^{-4}, 1 - 10^{-4}, ..., 1 - 10^{-4})$. 
+
+\subsection{Randomness}
+
 We had to be able to sample from Gaussians (for Gaussian-walking) and we had to be able to uniformly sample directions in $\mathbb{R}^n$ (for ball-walking). To sample Gaussians, we use the following method from \cite{Marsaglia}: generate a random pair $(x,y)$ from the unit circle (sample from the square $[-1,1]^2$ until we get a point in the circle). Conditioned on $s = x^2 + y^2 < 1$, we get that
 \begin{center}
 $\displaystyle x_1 = x\sqrt{\frac{-\ln(s)}{s}}$ and $\displaystyle y_1 = y\sqrt{\frac{-\ln(s)}{s}}$
 \end{center}
-are independent Gaussian variables with standard deviation $\sigma = 1/\sqrt{2}$ centered at $0$. Once we can sample from Gaussians, it is easy to sample directions uniformly: we just choose every coordinate independently from a Gaussian of center $0$ with some standard deviation $\sigma$. It is easy to see that this is uniform over all directions. Let $P$ be the probaility distribution for this. For any $x\in\mathbb{R}^n$, we get that $P(x) = e^{-||x||_2^2 / 2\sigma^2}$, which depends only on the norm $||x||_2$, not on the direction.
+are independent Gaussian variables with standard deviation $\sigma = 1/\sqrt{2}$ centered at $0$. Once we can sample from Gaussians, it is easy to sample directions uniformly: we just choose every coordinate independently from a Gaussian of center $0$ with some standard deviation $\sigma$. It is easy to see that this is uniform over all directions. Let $P$ be the probaility distribution for this. For any $x\in\mathbb{R}^n$, we get that $P(x) = e^{-||x||_2^2 / 2\sigma^2}$, which depends only on the norm $||x||_2$, not on the direction of $x$.
 
-Here is the code for the separation oracles which define the cube, the sphere, and the simplex:
+\subsection{The sampling}
 
-\begin{quote}
-\begin{verbatim}
-bool cube_separation_oracle(point p) {
-    for(int i = 0; i<p.n; i++) {
-        if(p.x[i] <= -1 || p.x[i] >= 1) return false;
-    }
-    return true;
-}
+For each sampling method and for each test case, we generated $1000$ samples. In most cases, we used $5000$ iterations of our random walk's transition function in order to generate each sample. However, as noted above, the hit-and-run method is slower due to its binary search. We binary search up to a precision of $10^{-12}$, which requires approximately $40$ calls to the membership oracle for each endpoint. We found empirically that transitioning only $1200$ times caused the program to run in about as much time as the other methods on $5000$ transitions. Therefore, we also ran tests with only $1200$ transitions for the hit-and-run.
 
-bool sphere_separation_oracle(point p) {
-    real square_norm = 0.0;
-    for(int i = 0; i<p.n; i++) {
-        square_norm += p.x[i] * p.x[i];
-    }
-    return square_norm < 1.0;
-}
+For ball-walking methods, the initial radius of the ball is $1/10$. In the adaptive ball-walking method, the radius is adjusted by a multiplicative factor of $3/2$.
 
-bool simplex_separation_oracle(point p) {
-    real c = (1.0 - sqrt(1.0 + (real)p.n)) / (real)p.n;
-    real coordsum = 0.0;
-    for(int i = 0; i < p.n; i++) {
-         coordsum += p.x[i];
-    }
-    real lambda = (1.0 - (real)p.n * c) / (coordsum - (real)p.n * c);
-    if(lambda < 1.0)
-        return false;
-    for(int i = 0; i < p.n; i++) {
-        if(c + lambda * (p.x[i] - c) < 0.0f)
-            return false;
-    }
-    return true;
-}
-\end{verbatim}
-\end{quote}
+For Gaussian-walking methods, the standard deviation of each Gaussian is $1/(10\sqrt{2})$. IN the adaptive method, it is adjusted by a multiplicative factor of $3/2$.
+
+Finally, note that when we say that we ran an adaptive method for $m$ iterations, we mean that we first ran $m/2$ adaptive transitions, and then $m/2$ non-adaptive iterations, using the step-size that was left at the end of the adaptive transitions.
 
 \section{Results}
 
