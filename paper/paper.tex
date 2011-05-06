@@ -53,7 +53,7 @@ In order to use the Metropolis method, we need to be sure that it will somehow a
 
 The Metropolis methods both have the same basic structure. A transition in the Markov chain works simply by choosing another point from some distribution centered at our current location; if that point is in the convex region $\mathcal{R}$, then we move to that point; otherwise, we stay. The only difference between the two methods is the distribution we use. Ball-walking chooses a point randomly from a ball, and Gaussian-walking chooses each coordinate from a Gaussian.
 
-These Metropolis methods will sample from $\mathcal{R}$ with some distribution; we want to be sure that this is actually the uniform distribution. In order to this, we first want to show that the uniform distribution is a \emph{stationary distribution} of the transition function. We say that a distribution $\rho$ on $\mathcal{R}$ is stationary if when we choose a point from $\mathcal{R}$ according to $\rho$ and then perform a transition, we get a point that is also distributed according to $\rho$.
+After many such transitions, these Metropolis methods will sample from $\mathcal{R}$ with some distribution; we want to be sure that this is actually the uniform distribution. In order to this, we first want to show that the uniform distribution is a \emph{stationary distribution} of the transition function. We say that a distribution $\rho$ on $\mathcal{R}$ is stationary if when we choose a point from $\mathcal{R}$ according to $\rho$ and then perform a transition, we get a point that is also distributed according to $\rho$.
 
 Now, we want to show that these two transition functions both have the uniform distribution as a stationary distribution. To show this, we use the following fact, from \cite{Smith}. Let $P(x,y)$ be the value of the transition distribution associated with moving from $x$ to $y$. We say that $P$ is a \emph{symmetric} if $P(x,y) = P(y,x)$ for all $x,y$. Then we have:
 
@@ -73,11 +73,19 @@ where here we have used the fact that $\mu(x) = \mu(y)$, $P(x,y) = P(y,x)$, and 
 \emph{This is a continuous analog of the following fact: given an undirected $d$-regular graph $G$, consider a Markov chain which, from any vertex, jumps to each of its neighbors with probability $1/d$. Then the stationary distribution on this Markov chain is the stationary distribution.}
 \end{remark}
 
-This theorem allows us to conclude that both Metropolis methods we are considering, the ball-walking and the Gaussian-walking, have a uniform stationary distribution. First consider the ball walking method. Let $V$ be the volume of the ball that we sample from, and let $r$ be its radius. Then for any points $x,y\in\mathcal{R}$, with $x\ne y$, we have $P_\text{ball}(x,y) = P_\text{ball}(y,x) = \frac{1}{V}$ if $||x-y||_2 \le r$ and $P_\text{ball}(x,y) = P_\text{ball}(y,x) = 0$ otherwise.
+This theorem allows us to conclude
+\begin{proposition}
+The ball-walking transition function and the Gaussian-walking transition function each have a uniform stationary distribution.
+\end{proposition}
+\begin{proof}
+First, consider the ball walking method. Let $V$ be the volume of the ball that we sample from, and let $r$ be its radius. Then for any points $x,y\in\mathcal{R}$, with $x\ne y$, we have $P_\text{ball}(x,y) = P_\text{ball}(y,x) = \frac{1}{V}$ if $||x-y||_2 \le r$ and $P_\text{ball}(x,y) = P_\text{ball}(y,x) = 0$ otherwise.
 
-In the case of the Gaussian-walking, we simply get $P_\text{Gaussian}(x,y) = P_\text{Gaussian}(y,x) = e^{-||x-y||_2^2 / 2\sigma^2}$ for any two points $x\ne y$, where $\sigma$ is the standard deviation of any coordinate.
+Now consider the Gaussian-walking transition. We simply get $P_\text{Gaussian}(x,y) = P_\text{Gaussian}(y,x) = e^{-||x-y||_2^2 / 2\sigma^2}$ for any two points $x\ne y$, where $\sigma$ is the standard deviation of any coordinate.
 
-Thus, both ball-walking and Gaussian-walking have a stationary uniform distribution. It is also shown in \cite{Smith} that the distributions from a Markov chain with a symmetric transition function eventually \emph{converge} to this stationary uniform distribution. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
+Thus, by \ref{symmetric}, both ball-walking and Gaussian-walking have a stationary uniform distribution.
+\end{proof}
+
+It is also shown in \cite{Smith} that the distributions from a Markov chain with a symmetric transition function eventually \emph{converge} to this stationary uniform distribution, which shows that these algorithms for sampling uniformly will work, given enough time. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
 
 %we can also show that these algorithms may take exponentially long to converge. Suppose $\mathcal{R}$ is an $n$-dimensional cube $[-1,1]^n$, and suppose $x_0 = (1 - \epsilon, 1-\epsilon, ..., 1-\epsilon)$ for some small $\epsilon$. If we sample a point randomly from our transition distribution, then the probability that we choose a point in $\mathcal{R}$ is exponentially small in $n$. Thus, we end up ``stuck" at this point for a very long time. We attempt to fix this problem in the next section.
 
