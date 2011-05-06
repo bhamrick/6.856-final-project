@@ -82,10 +82,10 @@ First, consider the ball walking method. Let $V$ be the volume of the ball that 
 
 Now consider the Gaussian-walking transition. We simply get $P_\text{Gaussian}(x,y) = P_\text{Gaussian}(y,x) = e^{-||x-y||_2^2 / 2\sigma^2}$ for any two points $x\ne y$, where $\sigma$ is the standard deviation of any coordinate.
 
-Thus, by \ref{symmetric}, both ball-walking and Gaussian-walking have a stationary uniform distribution.
+Thus, the transition functions are symmetric, so by Theorem \ref{symmetric}, both ball-walking and Gaussian-walking have a stationary uniform distribution.
 \end{proof}
 
-It is also shown in \cite{Smith} that the distributions from a Markov chain with a symmetric transition function eventually \emph{converge} to this stationary uniform distribution, which shows that these algorithms for sampling uniformly will work, given enough time. However, in the next section, we will see that this can take a very long time to converge, and we modify the algorithm in an attempt to fix this problem.
+It is also shown in \cite{Smith} that the distributions from a Markov chain with a symmetric transition function eventually \emph{converge} to this stationary uniform distribution, which shows that these algorithms for sampling uniformly will work, given enough time. The \emph{mixing time} of an algorithm is the number of iterations required for the distribution to converge to the uniform distribution within some desired precision. Ideally, we want the mixing time to be small. However, in the next section, we will see that this can take a very long time to mix, and we modify the algorithm in an attempt to fix this problem.
 
 %we can also show that these algorithms may take exponentially long to converge. Suppose $\mathcal{R}$ is an $n$-dimensional cube $[-1,1]^n$, and suppose $x_0 = (1 - \epsilon, 1-\epsilon, ..., 1-\epsilon)$ for some small $\epsilon$. If we sample a point randomly from our transition distribution, then the probability that we choose a point in $\mathcal{R}$ is exponentially small in $n$. Thus, we end up ``stuck" at this point for a very long time. We attempt to fix this problem in the next section.
 
@@ -120,7 +120,7 @@ Intuitively, we see that this ought to avoid the issue with the Metropolis metho
 
 These ideas are made more precise with the following bound, from \cite{Vempala}:
 
-\begin{theorem}[{\bf Hit-and-run bound}] \label{hitandrunbound} Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
+\begin{theorem}[{\bf Hit-and-run mixing bound}] \label{hitandrunbound} Suppose we are considering the hit-and-run Markov chain on an $n$-dimensional convex region $\mathcal{R}$, starting from a point of distance $d$ from the boundary of $\mathcal{R}$. Suppose $\mathcal{R}$ contains a ball of radius $r$ and is contained in a ball of radius $R$. Then after
 \begin{center}$m = \displaystyle 10^{11}\frac{n^3 R^2}{r^2}\ln\frac{R}{d\epsilon}$\end{center}
 steps, the total variation distance of the chain is within $\epsilon$ of the uniform distribution. That is, if $\mu$ is the uniform distribution and $P$ is the the distribution of the chain after $m$ steps, then
 \begin{center}$\displaystyle \sup_{r \in \mathcal{R}} |\mu(r) - P(r)| \le \epsilon$.\end{center}
@@ -140,7 +140,7 @@ We implemented separation oracles for a cube, a sphere, and a simplex for dimens
 \begin{itemize}
 \item \emph{The cube.} This is simply the region $(-1,1)^n$.
 \item \emph{The sphere.} This is simply the region $\{(x_1,...,x_n)\in\mathbb{R}^n : x_1^2 + x_2^2 + \cdots + x_n^2 < 1\}$.
-\item \emph{The simplex.} We defined this as the interior of the convex hull of the points $e_1, ..., e_n$ (defined by $e_{i,j} = 1$ if $i=j$ and $e_{i,j} = 0$ otherwise) and $f = (c,c,...,c)$ where\linebreak $c = (1 - \sqrt{n + 1}) / n$. We can compute that any two of these $n+1$ points are of Euclidean distance $\sqrt{2}$ from each other. To test if a point $p$ lies inside the simplex, we draw a line through $f$ and $p$, and intersect it with the plane $x_1 + x_2 + \cdots + x_n = 1$, say this intersection is $q$. First, we want to check that $p$ lies between $f$ and $q$. If so, then we just need to check that $q$ lies in the convex hull of $e_1,e_2,...,e_n$, but this is equivalent to checking that each coordinate of $q$ is nonnegative.
+\item \emph{The simplex.} We defined this as the interior of the convex hull of the points $e_1, ..., e_n$ (which are defined by $e_{i,j} = 1$ if $i=j$ and $e_{i,j} = 0$ otherwise) and $f = (c,c,...,c)$ where\linebreak $c = (1 - \sqrt{n + 1}) / n$. We can compute that any two of these $n+1$ points are of Euclidean distance $\sqrt{2}$ from each other. To test if a point $p$ lies inside the simplex, we draw a line through $f$ and $p$, and intersect it with the plane $x_1 + x_2 + \cdots + x_n = 1$, say this intersection is $q$. First, we want to check that $p$ lies between $f$ and $q$. If so, then we just need to check that $q$ lies in the convex hull of $e_1,e_2,...,e_n$, but this is equivalent to checking that each coordinate of $q$ is nonnegative.
 \end{itemize}
 
 We want to investigate how well the algorithms work in different starting places. We use the origin $(0,0,...,0)$ as a ``good'' start. We also run tests where the starting place is ``bad'', that is, near the boundary of the region. For the sphere and the simplex, we use the point $(1 - 10^{-4}, 0, ..., 0)$, and for the cube we use $(1 - 10^{-4}, 1 - 10^{-4}, ..., 1 - 10^{-4})$. Note that on the cube and simplex, the portion of the ball inside the region at a bad start is exponentially small, while for a sphere it is nearly half of the ball, so one of the theoretical boundaries to rapid mixing of the ball walking method is not present in a sphere.
@@ -236,9 +236,9 @@ Finally, a bad start in the 100 dimensional sphere also gives interesting result
 
 \section{Conclusion}
 
-In conclusion, we have found that the results of our tests confirm what we thought to be theoretically true: the hit-and-run method performs much better than the Metropolis methods. With a good start, hit-and-run required only something on the order of $1000$ iterations to produce a distribution that seemed reasonably uniform, which is even better than the bound given in \ref{hitandrunbound}, even with $100$ dimensions, whereas this cube is too larger for the the basic-ball walking method to have a good chance of even reaching the edges. We also saw that the basic Gaussian-walking method worked better than the ball-walking method in this case.
+In conclusion, we have found that the results of our tests confirm what we thought to be theoretically true: the hit-and-run method performs much better than the Metropolis methods. With a good start, hit-and-run required only something on the order of $1000$ iterations to produce a distribution that seemed reasonably uniform, which is even better than the bound given in Theorem \ref{hitandrunbound}, even with $100$ dimensions, whereas this cube is too larger for the the basic-ball walking method to have a good chance of even reaching the edges. We also saw that the basic Gaussian-walking method worked better than the ball-walking method in this case.
 
-In general, the adaptive methods performed better than their non-adaptive counterparts. When started from the corner of a cube or a simplex, the non-adaptive methods would always stay in that corner for high-dimension test cases, even $n=10$. The adaptive methods, however, produced a distribution which looked much more uniform.
+In general, the adaptive methods performed better than their non-adaptive counterparts. When started from the corner of a cube or a simplex, the non-adaptive methods would always stay in that corner for high-dimension test cases, even $n=10$. The adaptive methods, however, produced a distribution which looked much more uniform. However, in cases where we do not start close to a boundary, the adaptive methods do not have as much of an advantage over the non-adaptive methods.
 
 These results indicate that, in practice, the hit-and-run method is better than the Metropolis methods, even when taking into account its slower transition step. Among the Metropolis methods, the Gaussian-walking method is a slight improvement over the ball-walking method, and the adaptive methods usually help in cases where are starting point is near a corner.
 
