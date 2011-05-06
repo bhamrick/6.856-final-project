@@ -134,6 +134,12 @@ are independent Gaussian variables with standard deviation $\sigma = 1/\sqrt{2}$
 
 For each sampling method and for each test case, we generated $1000$ samples. In most cases, we used $5000$ iterations of our random walk's transition function in order to generate each sample. However, as noted above, the hit-and-run method is slower due to its binary search. We binary search up to a precision of $10^{-12}$, which requires approximately $40$ calls to the membership oracle for each endpoint. We found empirically that transitioning only $1200$ times caused the program to run in about as much time as the other methods on $5000$ transitions. Therefore, we also ran tests with only $1200$ transitions for the hit-and-run.
 
+For ball-walking methods, the initial radius of the ball is $1/10$. In the adaptive ball-walking method, the radius is adjusted by a multiplicative factor of $3/2$.
+
+For Gaussian-walking methods, the standard deviation of each Gaussian is $1/(10\sqrt{2})$. IN the adaptive method, it is adjusted by a multiplicative factor of $3/2$.
+
+Finally, note that when we say that we ran an adaptive method for $m$ iterations, we mean that we first ran $m/2$ adaptive transitions, and then $m/2$ non-adaptive iterations, using the step-size that was left at the end of the adaptive transitions.
+
 \section{Results}
 
 \section{Conclusion}
