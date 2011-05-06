@@ -175,9 +175,44 @@ Finally, note that when we say that we ran an adaptive method for $m$ iterations
 \end{figure}
 
 \begin{figure}
+\centering
 \subfloat[Standard]{\epsfig{file=images/gaussian_5000_cube10_cold,width=8cm}}
 \subfloat[Adaptive]{\epsfig{file=images/gaussian_adaptive_5000_cube10_cold,width=8cm}}
 \caption{5000 iteration Gaussian walking methods on the 10 dimensional cube with a bad start}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat[Standard]{\epsfig{file=images/gaussian_2000_cube10_cold,width=8cm}}
+\subfloat[Adaptive]{\epsfig{file=images/gaussian_adaptive_2000_cube10_cold,width=8cm}}
+\caption{2000 iteration Gaussian walking methods on the 10 dimensional cube with a bad start}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat[Standard Ball-Walking]{\epsfig{file=images/ballwalk_5000_cube100_warm,width=5.4cm}}
+\subfloat[Adaptive Ball-Walking]{\epsfig{file=images/ballwalk_adaptive_5000_cube100_warm,width=5.4cm}}
+\subfloat[Standard Gaussian-Walking]{\epsfig{file=images/gaussian_5000_cube100_warm,width=5.4cm}}
+\caption{5000 iteration Metropolis methods on the 100 dimensional cube with a good start}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat[10 dimensional cube, bad start]{\epsfig{file=images/hitandrun_1200_cube10_cold,width=8cm}}
+\subfloat[100 dimensional cube, good start]{\epsfig{file=images/hitandrun_1200_cube100_warm,width=8cm}}
+\caption{1200 iteration hit-and-run method on the 10 dimensional and 100 dimensional cubes}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfloat[5000 Iteration Standard Ball-Walking]{\epsfig{file=images/ballwalk_5000_sphere100_cold,width=8cm}}
+\subfloat[5000 Iteration Adaptive Ball-Walking]{\epsfig{file=images/ballwalk_adaptive_5000_sphere100_cold,width=8cm}}
+
+\subfloat[5000 Iteration Standard Gaussian-Walking]{\epsfig{file=images/gaussian_adaptive_5000_sphere100_cold,width=8cm}}
+\subfloat[5000 Iteration Adaptive Gaussian-Walking]{\epsfig{file=images/gaussian_5000_sphere100_cold,width=8cm}}
+
+\subfloat[1200 Iteration Hit and Run]{\epsfig{file=images/hitandrun_1200_sphere100_cold,width=8cm}}
+\caption{Sampling methods on the 100 dimensional sphere with a bad start}
 \end{figure}
 
 \section{Conclusion}
@@ -186,7 +221,7 @@ In conclusion, we have found that the results of our tests confirm what we thoug
 
 In general, the adaptive methods performed better than their non-adaptive counterparts. When started from the corner of a cube or a simplex, the non-adaptive methods would always stay in that corner for high-dimension test cases, even $n=10$. The adaptive methods, however, produced a distribution which looked much more uniform.
 
-These results indicate that, in practice, the hit-and-run method is better than the Metropolis methods, even when taking into account its slower transition step. Among the Metropolis methods, the Gaussian-walking method is a slight improvement over the ball-walking method, and the adaptive methods always help in cases where are starting point is near a corner.
+These results indicate that, in practice, the hit-and-run method is better than the Metropolis methods, even when taking into account its slower transition step. Among the Metropolis methods, the Gaussian-walking method is a slight improvement over the ball-walking method, and the adaptive methods usually help in cases where are starting point is near a corner.
 
 \pagebreak
 
