@@ -125,7 +125,7 @@ One potential drawback of this method is that it needs to find $\ell \cap \mathc
 
 To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run. The five methods were implemented in C++ and tested on several test regions of various dimensions: a cube, a sphere, and a regular simplex, all definied by separation oracles. Real numbers were represented by 64-bit double precision, although random numbers were generated with 31 bits.
 
-\subsection{The regions}
+\subsection{The Regions (test cases)}
 
 We implemented separation oracles for a cube, a sphere, and a simplex for dimensions and tested the algorithms for dimensions $n\in\{2,3,4,7,10,100\}$.
 \begin{itemize}
@@ -146,9 +146,9 @@ are independent Gaussian variables with standard deviation $\sigma = 1/\sqrt{2}$
 
 Ball walking poses another challenge, which is that one must sample uniformly from a ball around it. We do this by sampling uniformly from a random direction, which can be done by sampling from a Gaussian distribution and normalizing, then sample a number $\alpha$ in $[0,1)$ uniformly and set $r = \alpha^{1/n}$. To see that this is the correct distribution, note that the probability distribution of radius is proportional to $r^{n-1}$, and therefore should be equal to $nr^{n-1}$. The chosen radius is the inverse of the cumulative distribution function for this distribution, and the cumulative distribution function is easily seen to be $r^n$.
 
-\subsection{The sampling}
+\subsection{The Sampling}
 
-For each sampling method and for each test case, we generated $1000$ samples. In most cases, we used $5000$ iterations of our random walk's transition function in order to generate each sample. However, as noted above, the hit-and-run method is slower due to its binary search. We binary search up to a precision of $10^{-12}$, which requires approximately $40$ calls to the membership oracle for each endpoint. We found empirically that transitioning only $1200$ times caused the program to run in about as much time as the other methods on $5000$ transitions. Therefore, we also ran tests with only $1200$ transitions for the hit-and-run.
+For each sampling method and for each test case, we generated $1000$ samples. In most cases, we used $5000$ iterations of our random walk's transition function in order to generate each sample. However, as noted above, the hit-and-run method is slower due to its binary search. We binary search up to a precision of $10^{-12}$, which requires approximately $40$ calls to the membership oracle for each endpoint. We found empirically that transitioning only $1200$ times caused the program to run in about as much time as the other methods on $5000$ transitions. Therefore, we also ran tests with only $1200$ transitions for the hit-and-run. We also ran Gaussian-walking and adapative Gaussian-walking at $2000$ iterations for comparison between the two.
 
 For ball-walking methods, the initial radius of the ball is $1/10$. In the adaptive ball-walking method, the radius is adjusted by a multiplicative factor of $3/2$.
 
