@@ -103,7 +103,7 @@ We need to find a good balance between the two; that is, we cannot have the radi
 
 In the case of ball walking, our step size is the radius of the ball around the current point from which we draw the next point, and in the Gaussian walking method the step size corresponds to the standard deviation of the normal distributions used. However, it is not clear that this procedure has the uniform distribution as its stationary distribution, so after running this adaptive procedure for a while, we finish by running the nonadaptive version, using the step size left by the adaptive method.
 
-Since the nonadaptive methods converge to the stationary distribution from any starting distribution, this yields a method that converges to the stationary distribution, but first attempts to both find a good step size in order to converge more rapidly and move to a better starting point (i.e. not near any corners).
+Since the nonadaptive methods converge to the stationary distribution from any starting distribution, this yields a method that converges to the stationary distribution, but first attempts to both find a good step size in order to converge more rapidly and move to a better starting point (i.e. not near any corners), so we hope that it will perform better than the normal Metropolis method.
 
 \section{Hit and Run}
 
