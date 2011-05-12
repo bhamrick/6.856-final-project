@@ -45,9 +45,9 @@ The hit-and-run method is another random walk, but it has the advantage that it 
 
 It is known that all of these transition functions have a uniform stationary distribution, and that the distributions of the Markov chain eventually converge to these uniform distributions. In theory, the hit-and-run method converges much more quickly: the Metropolis methods require in the worst case at least an amount of time exponential in the number of dimensions $n$ to get an approximation to the uniform distribution that is within the desired precision, whereas the hit-and-run method requires only polynomial time regardless of the starting distribution. In this paper we introduce \emph{adaptive Metropolis}, modifications which adjust the transition distribution in hopes of reducing the required time in practice, although we are not aware of any theoretical improvements.
 
-The aim of this paper is to compare the performance in practice of these methods, which we have implemented and tested on high-dimensional convex regions.
+The aim of this paper is to compare the performance in practice of these methods, which we have implemented and tested on high-dimensional convex regions. In Sections \ref{metro} and \ref{adapt}, we discuss the Metropolis method in more detail, and introduce a modification which we hope will work better in practice. In Section \ref{hitandrunsection}, we look at the hit-and-run method. Finally, in Sections \ref{implementation} and \ref{results}, we explain our testing and describe the results.
 
-\section{The Metropolis Method}
+\section{The Metropolis Method}\label{metro}
 
 In order to use the Metropolis method, we need to be sure that it will somehow approximate the uniform distribution. We can do this by using the fact that our transition functions are \emph{symmetric}.
 
@@ -89,7 +89,7 @@ It is also shown in \cite{Smith} that the distributions from a Markov chain with
 
 %we can also show that these algorithms may take exponentially long to converge. Suppose $\mathcal{R}$ is an $n$-dimensional cube $[-1,1]^n$, and suppose $x_0 = (1 - \epsilon, 1-\epsilon, ..., 1-\epsilon)$ for some small $\epsilon$. If we sample a point randomly from our transition distribution, then the probability that we choose a point in $\mathcal{R}$ is exponentially small in $n$. Thus, we end up ``stuck" at this point for a very long time. We attempt to fix this problem in the next section.
 
-\section{Adaptive Metropolis}
+\section{Adaptive Metropolis}\label{adapt}
 
 Metropolis Markov chain methods, which include the basic ball-walking method, have two factors which cause increased runtime. The first and most theoretically important is that if the current point is close to the corner of the region, then the chance of a step succeeding can be exponentially small; a ball around that point might have most of its volume lying outside of the region $\mathcal R$. Another possibility is simply that, for instance, we may have a ball that it is so large it contains all of $\mathcal R$, but $\mathcal R$ is only a small fraction of the ball. In either case, there may be an exponentially small chance of a transition succeeding.
 
@@ -105,7 +105,7 @@ In the case of ball walking, our step size is the radius of the ball around the 
 
 Since the nonadaptive methods converge to the stationary distribution from any starting distribution, this yields a method that converges to the stationary distribution, but first attempts to both find a good step size in order to converge more rapidly and move to a better starting point (i.e. not near any corners), so we hope that it will perform better than the normal Metropolis method.
 
-\section{Hit and Run}
+\section{Hit and Run}\label{hitandrunsection}
 
 We now consider the hit-and-run method for sampling. Recall that the idea behind this method is to transition as follows: from a point $x \in \mathcal{R}$, randomly choose a line $\ell$ through $x$, and then randomly choose a point on $\ell \cap \mathcal{R}$ to jump to.
 
@@ -132,7 +132,7 @@ This bound is polynomial in $n$, so in theory, it is better than the Metropolis 
 
 One potential drawback of this method is that it needs to find $\ell \cap \mathcal{R}$ given $\ell$. Given a membership oracle for $\mathcal{R}$, we can find the endpoints (up to some specified precision) of $\ell$ with a binary search. Any step of the hit-and-run method takes much longer than any step of the ball-walking method. Thus, the hit-and-run method is only an improvement in the number of transition steps that we want to use; if this is large enough to overcome the slowdown from the binary search (and in theory, it should be), then it will also have an improved runtime.
 
-\section{Implementation Details}
+\section{Implementation Details}\label{implementation}
 
 To test how these algorithms performed in practice, we implemented five algorithms for sampling: ball-walking, adaptive ball-walking, Gaussian-walking, adaptive Gaussian-walking, and hit-and-run. The five methods were implemented in C++ and tested on several test regions of various dimensions: a cube, a sphere, and a regular simplex, all defined by separation oracles. Real numbers were represented by 64-bit double precision, although each random number was generated from 31 random bits. We chose not to implement higher precision floating point numbers because our interest is in the scaling with dimension, rather than with the sample's requested precision.
 
@@ -170,7 +170,7 @@ For Gaussian-walking methods, the standard deviation of each Gaussian is $1/(10\
 
 Finally, note that when we say that we ran an adaptive method for $m$ iterations, we mean that we first ran $m/2$ adaptive transitions, and then $m/2$ non-adaptive iterations, using the step-size that was left at the end of the adaptive transitions.
 
-\section{Results}
+\section{Results}\label{results}
 
 In order to analyze the results, we plotted the first two coordinates of the samples from each of the test cases. The most interesting cases were the 10 dimensional cube and the 100 dimensional sphere. In the lower dimensional cases, all of the methods appear to have mixed in the time that we ran them, and in the 100 dimensional cube none of the methods effectively escaped the corner.
 
@@ -239,7 +239,7 @@ Finally, a bad start in the 100 dimensional sphere also gives interesting result
 \label{sphere}
 \end{figure}
 
-\section{Conclusion}
+\section{Conclusion}\label{conclusion}
 
 In conclusion, we have found that the results of our tests confirm what we thought to be theoretically true: the hit-and-run method performs much better than the Metropolis methods. With a good start, hit-and-run required only something on the order of $1000$ iterations to produce a distribution that seemed reasonably uniform, which is even better than the bound given in Theorem \ref{hitandrunbound}, even with $100$ dimensions, whereas this cube is too large for the the basic-ball walking method to have a good chance of even reaching the edges. We also saw that the basic Gaussian-walking method worked better than the ball-walking method in this case.
 
