@@ -35,7 +35,9 @@
 
 \section{Introduction}
 
-We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle} which determines whether a given point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
+We consider the problem of randomly and uniformly sampling a point from a convex region in $n$-dimensional space. This has applications, for instance, in convex optimization \cite{Dabbene}. Sampling can also allow us to estimate the volume of a convex region (\cite{Dyer}, \cite{Vempala2}).
+
+We phrase the problem as follows: we are given a convex region $\mathcal{R}$ in the form of a \emph{membership oracle} which determines whether a given point $x$ is in $\mathcal{R}$, along with a starting point $x_0$ in $\mathcal{R}$. The task is to sample a point from the region with with a distribution as close to uniform as possible.
 
 Here, we study two Markov chain-based methods for sampling, the \emph{Metropolis} method \cite{Metropolis}, and the \emph{hit-and-run} \cite{Vempala} method, and we see how they perform comparatively in practice. The Metropolis method is the simpler of the two. We start at some point and randomly walk around the region in the following way: from a point $x$, we choose another random point from some distribution based off of that point. If this new point lies in the convex region, then we jump to it; otherwise, we stay at $x$. We get a Markov chain $x_0, x_1, ...$, and after sufficiently many iterations, we take the point we are at to be our random point.
 
@@ -43,7 +45,7 @@ In this paper, we study two particular cases of the Metropolis method. The first
 
 The hit-and-run method is another random walk, but it has the advantage that it is guaranteed (almost surely) to move to another point. At a point $x$, we first choose a random direction, uniformly. Now consider the two-sided line $\ell$ which goes through $x$ and in the chosen direction. Choose a point uniformly randomly from $\ell\cap\mathcal{R}$, and jump to that point.
 
-It is known that all of these transition functions have a uniform stationary distribution, and that the distributions of the Markov chain eventually converge to these uniform distributions. In theory, the hit-and-run method converges much more quickly: the Metropolis methods require in the worst case at least an amount of time exponential in the number of dimensions $n$ to get an approximation to the uniform distribution that is within the desired precision, whereas the hit-and-run method requires only polynomial time regardless of the starting distribution. In this paper we introduce \emph{adaptive Metropolis}, modifications which adjust the transition distribution in hopes of reducing the required time in practice, although we are not aware of any theoretical improvements.
+It is known that all of these transition functions have a uniform stationary distribution, and that the distributions of the Markov chain eventually converge to these uniform distributions. In theory, the hit-and-run method converges much more quickly: the Metropolis methods require in the worst case at least an amount of time exponential in the number of dimensions $n$ to get an approximation to the uniform distribution that is within the desired precision, whereas the hit-and-run method requires only polynomial time regardless of the starting distribution. In this paper we introduce the \emph{adaptive Metropolis} method, a modification of the basic Metropolis method which adjusts the transition distribution as it runs, trying to balance out a couple of factors which impede its ability to travel throughout the entire region that we will see later. The hope is that it reduces the number of transitions needed in practice, although we are not aware of any theoretical improvements.
 
 The aim of this paper is to compare the performance in practice of these methods, which we have implemented and tested on high-dimensional convex regions. In Sections \ref{metro} and \ref{adapt}, we discuss the Metropolis method in more detail, and introduce a modification which we hope will work better in practice. In Section \ref{hitandrunsection}, we look at the hit-and-run method. Finally, in Sections \ref{implementation} and \ref{results}, we explain our testing and describe the results.
 
@@ -256,14 +258,18 @@ These results indicate that, in practice, the hit-and-run method is better than 
 
 \bibitem{Dabbene} Dabbene, F., ``A randomized cutting plane scheme for convex optimization,'' Computer-Aided Control Systems, 2008. CACSD 2008. IEEE International Conference on , vol., no., pp.120-125, 3-5 Sept. 2008.
 
+\bibitem{Dyer} Dyer, M.E., Frieze, A.M., and Kannan, R. ``A random polynomial-time algorithm for approximating the volume of convex bodies." Journal of the ACM, 38:1-17, 1991.
+
 \bibitem{Marsaglia} Marsaglia, G. and Bray, T.A. ``A Convenient Method for Generating Normal Variables." \emph{SIAM Review} Vol. 6, No. 3 (Jul., 1964), pp. 260-264.
 
-\bibitem{Vempala} Lov\'asz, L. and Vempala, S. Hit-and-Run from a corner. \emph{SIAM Journal on Computing}, 35(4):9851005, 2006.
+\bibitem{Vempala} Lov\'asz, L. and Vempala, S. ``Hit-and-Run from a corner." \emph{SIAM Journal on Computing}, 35(4):9851005, 2006.
+
+\bibitem{Vempala2} Lov\'asz, L. and Vempala, S. ``Simulated Annealing in Convex Bodies and an $O^*(n^4)$ Volume Algorith." Journal of Computer and System Sciences, Vol. 72, Issue 2, March 2006.
 
 \bibitem{Metropolis} Metropolis, N., Rosenbluth, M.N., Teller, A.H., Teller, E. ``Equations of State Calculations by Fast Computing Machines.'' \emph{Journal of Chemical Physics} \textbf{21} (6) pp. 1087-1092, June, 1953.
 
-\bibitem{Smith} Smith, R.L. \emph{Efficient Monte-Carlo procedures for generating points uniformly distributed over
-bounded regions}, Oper. Res., 32 (1984), pp. 1296-1308.
+\bibitem{Smith} Smith, R.L. ``Efficient Monte-Carlo procedures for generating points uniformly distributed over
+bounded regions." Oper. Res., 32 (1984), pp. 1296-1308.
 
 \end{thebibliography}
 
